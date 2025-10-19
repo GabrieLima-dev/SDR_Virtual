@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="pt-br" data-theme="auto">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ambiente Evolution API · SDR Virtual</title>
+  <meta name="description" content="Documentação oficial do projeto SDR Virtual — arquitetura de cenários e guias."/>
+  <link rel="icon" href="../favicon.ico">
+  <link rel="apple-touch-icon" href="../assets/img/favicon.png">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.min.css">
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script defer src="../assets/js/app.js"></script>
+</head>
+<body class="fade-in">
+<header class="container header">
+  <nav>
+    <ul>
+      <li><img src="../assets/img/favicon.png" alt="SDR" class="logo"/><strong>SDR Virtual</strong></li>
+    </ul>
+    <ul>
+      <li><a href="../index.html">Início</a></li>
+      <li class="dropdown">
+        <a href="#" role="button" class="contrast">Cenários ▾</a>
+        <ul class="submenu">
+          <li><a href="../scenarios/recebe-mensagens.html">Recebe Mensagens</a></li>
+          <li><a href="../scenarios/processamento-resposta.html">Processamento de Resposta</a></li>
+          <li><a href="../scenarios/envio-resposta.html">Envio de Resposta</a></li>
+          <li><a href="../scenarios/envio-fotos.html">Envio de Fotos</a></li>
+          <li><a href="../scenarios/envio-arquivos.html">Envio de Arquivos</a></li>
+          <li><a href="../scenarios/executor-de-filas.html">Executor de Filas</a></li>
+          <li><a href="../scenarios/monitor-de-logs.html">Monitor de Logs</a></li>
+          <li><a href="../scenarios/scheduler-cadencias.html">Scheduler de Cadências</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" role="button">Mais ▾</a>
+        <ul class="submenu">
+          <li><a href="../sections/der-estrutura-banco.html">DER e Estrutura do Banco</a></li>
+          <li><a href="../sections/config-postgresql.html">Configuração do PostgreSQL</a></li>
+          <li><a href="../sections/backup-retencao.html">Backup e Retenção de Dados</a></li>
+          <li><a href="../sections/config-vps.html">Configuração da VPS</a></li>
+          <li><a href="../sections/ambiente-n8n.html">Ambiente N8N</a></li>
+          <li><a href="../sections/ambiente-maritaca.html">Ambiente Maritaca</a></li>
+          <li><a href="../sections/ambiente-evolution.html">Ambiente Evolution API</a></li>
+          <li><a href="../sections/deploy-atualizacoes.html">Deploy e Atualizações</a></li>
+          <li><a href="../sections/versionamento-filas.html">Versionamento e Filas</a></li>
+          <li><a href="../sections/seguranca-tokens.html">Segurança e Tokens</a></li>
+          <li><a href="../sections/logs-monitoramento.html">Logs e Monitoramento Avançado</a></li>
+          <li><a href="../sections/status-metricas.html">Status e Métricas (SaaS)</a></li>
+          <li><a href="../sections/clientes-multitenant.html">Clientes e Multi-Tenant</a></li>
+          <li><a href="../sections/relatorios-insights.html">Relatórios e Insights</a></li>
+        </ul>
+      </li>
+      <li><button id="themeToggle" aria-label="Alternar tema">🌗</button></li>
+      <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </nav>
+</header>
+<main class="container grid">
+  <aside class="sidebar">
+    <input type="search" id="search" placeholder="Pesquisar..." aria-label="Pesquisar documentação" />
+    <h6 class="muted">Cenários</h6>
+    <ul class="nav-list">
+      <li><a href="../scenarios/recebe-mensagens.html">Recebe Mensagens</a></li>
+      <li><a href="../scenarios/processamento-resposta.html">Processamento de Resposta</a></li>
+      <li><a href="../scenarios/envio-resposta.html">Envio de Resposta</a></li>
+      <li><a href="../scenarios/envio-fotos.html">Envio de Fotos</a></li>
+      <li><a href="../scenarios/envio-arquivos.html">Envio de Arquivos</a></li>
+      <li><a href="../scenarios/executor-de-filas.html">Executor de Filas</a></li>
+      <li><a href="../scenarios/monitor-de-logs.html">Monitor de Logs</a></li>
+      <li><a href="../scenarios/scheduler-cadencias.html">Scheduler de Cadências</a></li>
+    </ul>
+    <h6 class="muted">Arquitetura & Banco</h6>
+    <ul class="nav-list">
+      <li><a href="../sections/der-estrutura-banco.html">DER e Estrutura do Banco</a></li>
+      <li><a href="../sections/config-postgresql.html">Configuração do PostgreSQL</a></li>
+      <li><a href="../sections/backup-retencao.html">Backup e Retenção de Dados</a></li>
+    </ul>
+    <h6 class="muted">Infraestrutura</h6>
+    <ul class="nav-list">
+      <li><a href="../sections/config-vps.html">Configuração da VPS</a></li>
+      <li><a href="../sections/ambiente-n8n.html">Ambiente N8N</a></li>
+      <li><a href="../sections/ambiente-maritaca.html">Ambiente Maritaca</a></li>
+      <li><a href="../sections/ambiente-evolution.html">Ambiente Evolution API</a></li>
+    </ul>
+    <h6 class="muted">Operação & DevOps</h6>
+    <ul class="nav-list">
+      <li><a href="../sections/deploy-atualizacoes.html">Deploy e Atualizações</a></li>
+      <li><a href="../sections/versionamento-filas.html">Versionamento e Filas</a></li>
+      <li><a href="../sections/seguranca-tokens.html">Segurança e Tokens</a></li>
+      <li><a href="../sections/logs-monitoramento.html">Logs e Monitoramento Avançado</a></li>
+    </ul>
+    <h6 class="muted">Painel SaaS (Futuro)</h6>
+    <ul class="nav-list">
+      <li><a href="../sections/status-metricas.html">Status e Métricas</a></li>
+      <li><a href="../sections/clientes-multitenant.html">Clientes e Multi-Tenant</a></li>
+      <li><a href="../sections/relatorios-insights.html">Relatórios e Insights</a></li>
+    </ul>
+  </aside>
+  <section class="content">
+
+<hgroup>
+  <h1>Ambiente Evolution API</h1>
+  <p class="muted">Em construção • Esta página receberá conteúdo detalhado em breve.</p>
+</hgroup>
+
+<article>
+  <h2>Resumo</h2>
+  <p>Estrutura base criada. Utilize esta página para documentar <strong>Ambiente Evolution API</strong> com clareza, exemplos e diagramas.</p>
+</article>
+
+<article>
+  <h2>Checklist inicial</h2>
+  <ul>
+    <li>Contexto e objetivos</li>
+    <li>Passos e pré-requisitos</li>
+    <li>Exemplos de configuração</li>
+    <li>Boas práticas</li>
+    <li>Problemas comuns e soluções</li>
+  </ul>
+</article>
+
+  </section>
+</main>
+<footer class="container">
+  <small>© 2025 SDR Virtual · Documentação técnica. | Tema: Pico.css · Mermaid</small>
+</footer>
+</body>
+</html>
