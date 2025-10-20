@@ -8,7 +8,8 @@
   <link rel="apple-touch-icon" href="../assets/img/favicon.png">
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.min.css">
   <link rel="stylesheet" href="../assets/css/styles.css" />
-  <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>if(!window.mermaid){var s=document.createElement('script');s.src='../assets/js/mermaid.min.js';document.head.appendChild(s);}</script>
   <script defer src="../assets/js/app.js"></script>
 </head>
 <body class="fade-in">
@@ -52,7 +53,7 @@
           <li><a href="../sections/versionamento-filas.html">Versionamento e Filas</a></li>
           <li><a href="../sections/seguranca-tokens.html">Segurança e Tokens</a></li>
           <li><a href="../sections/logs-monitoramento.html">Logs e Monitoramento</a></li>
-          <li><a href="../sections/status-metricas.html">Status e Métricas</a></li>
+          <li><a href="../sections/status-metricas.html">Status e Métricas (SaaS)</a></li>
           <li><a href="../sections/clientes-multitenant.html">Clientes e Multi-Tenant</a></li>
           <li><a href="../sections/relatorios-insights.html">Relatórios e Insights</a></li>
         </ul>
@@ -64,23 +65,56 @@
 <main class="container grid">
   <aside class="sidebar">
     <input type="search" id="search" placeholder="Pesquisar..." aria-label="Pesquisar documentação" />
-    <h6 class="muted">Atalhos</h6>
+    <h6 class="muted">Visão Geral</h6>
     <ul class="nav-list">
-      <li><a href="../sections/der-estrutura-banco.html">DER do Banco</a></li>
-      <li><a href="../sections/config-postgresql.html">PostgreSQL</a></li>
-      <li><a href="../sections/ambiente-evolution.html">Evolution API</a></li>
-      <li><a href="../sections/ambiente-maritaca.html">Maritaca</a></li>
-      <li><a href="../sections/ambiente-n8n.html">n8n</a></li>
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../sections/sobre-projeto.html">Sobre o Projeto</a></li>
+    </ul>
+    <h6 class="muted">Cenários</h6>
+    <ul class="nav-list">
+      <li><a href="../scenarios/recebe-mensagens.html">Recebe Mensagens</a></li>
+      <li><a href="../scenarios/processamento-resposta.html">Processamento de Resposta</a></li>
+      <li><a href="../scenarios/envio-resposta.html">Envio de Resposta</a></li>
+      <li><a href="../scenarios/envio-fotos.html">Envio de Fotos</a></li>
+      <li><a href="../scenarios/envio-arquivos.html">Envio de Arquivos</a></li>
+      <li><a href="../scenarios/executor-de-filas.html">Executor de Filas</a></li>
+      <li><a href="../scenarios/monitor-de-logs.html">Monitor de Logs</a></li>
+      <li><a href="../scenarios/scheduler-cadencias.html">Scheduler de Cadências</a></li>
+    </ul>
+    <h6 class="muted">Arquitetura & Banco</h6>
+    <ul class="nav-list">
+      <li><a href="../sections/der-estrutura-banco.html">DER e Estrutura do Banco</a></li>
+      <li><a href="../sections/config-postgresql.html">Configuração do PostgreSQL</a></li>
+    </ul>
+    <h6 class="muted">Configurações Técnicas</h6>
+    <ul class="nav-list">
+      <li><a href="../sections/config-vps.html">Configuração da VPS</a></li>
+      <li><a href="../sections/ambiente-n8n.html">Ambiente N8N</a></li>
+      <li><a href="../sections/ambiente-maritaca.html">Ambiente Maritaca</a></li>
+      <li><a href="../sections/ambiente-evolution.html">Ambiente Evolution API</a></li>
+      <li><a href="../sections/backup-retencao.html">Backup e Retenção</a></li>
+    </ul>
+    <h6 class="muted">Operação & DevOps</h6>
+    <ul class="nav-list">
+      <li><a href="../sections/deploy-atualizacoes.html">Deploy e Atualizações</a></li>
+      <li><a href="../sections/versionamento-filas.html">Versionamento e Filas</a></li>
+      <li><a href="../sections/seguranca-tokens.html">Segurança e Tokens</a></li>
+      <li><a href="../sections/logs-monitoramento.html">Logs e Monitoramento</a></li>
+      <li><a href="../sections/status-metricas.html">Status e Métricas (SaaS)</a></li>
+      <li><a href="../sections/clientes-multitenant.html">Clientes e Multi-Tenant</a></li>
+      <li><a href="../sections/relatorios-insights.html">Relatórios e Insights</a></li>
     </ul>
   </aside>
   <section class="content">
 
-<hgroup><h1>Ambiente N8N</h1><p class="muted">Instalação Docker, import/export, credenciais e webhook Evolution.</p></hgroup>
-<article><h2>Docker</h2>
-<pre><code>docker run -d --name n8n -p 5678:5678 -v ~/.n8n:/home/node/.n8n  -e N8N_ENCRYPTION_KEY="chave_segura_aqui"  -e DB_TYPE=postgresdb  -e DB_POSTGRESDB_DATABASE=sdr_virtual  -e DB_POSTGRESDB_HOST=localhost  -e DB_POSTGRESDB_PORT=5432  -e DB_POSTGRESDB_USER=sdr_user  -e DB_POSTGRESDB_PASSWORD=sdr_password  n8nio/n8n:latest</code></pre></article>
-<article><h2>Exportar/Importar workflows</h2>
+<hgroup><h1>Ambiente N8N</h1><p class="muted">Instalação via Docker, import/export, credenciais e webhooks.</p></hgroup>
+<article><h2>Instalar via Docker</h2>
+<pre><code>docker run -d --name n8n   -p 5678:5678   -v ~/.n8n:/home/node/.n8n   -e N8N_ENCRYPTION_KEY="chave_segura_aqui"   -e DB_TYPE=postgresdb   -e DB_POSTGRESDB_DATABASE=sdr_virtual   -e DB_POSTGRESDB_HOST=localhost   -e DB_POSTGRESDB_PORT=5432   -e DB_POSTGRESDB_USER=sdr_user   -e DB_POSTGRESDB_PASSWORD=sdr_password   n8nio/n8n:latest</code></pre>
+</article>
+<article><h2>Exportar/Importar Workflows</h2>
 <pre><code>n8n export:workflow --id=1 --output=recebe-mensagens.json
-n8n import:workflow --input=envio-resposta.json</code></pre></article>
+n8n import:workflow --input=envio-resposta.json</code></pre>
+</article>
 <article><h2>Credenciais PostgreSQL</h2><pre><code>Host: localhost
 Database: sdr_virtual
 User: sdr_user

@@ -8,7 +8,8 @@
   <link rel="apple-touch-icon" href="../assets/img/favicon.png">
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.min.css">
   <link rel="stylesheet" href="../assets/css/styles.css" />
-  <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>if(!window.mermaid){var s=document.createElement('script');s.src='../assets/js/mermaid.min.js';document.head.appendChild(s);}</script>
   <script defer src="../assets/js/app.js"></script>
 </head>
 <body class="fade-in">
@@ -52,7 +53,7 @@
           <li><a href="../sections/versionamento-filas.html">Versionamento e Filas</a></li>
           <li><a href="../sections/seguranca-tokens.html">Segurança e Tokens</a></li>
           <li><a href="../sections/logs-monitoramento.html">Logs e Monitoramento</a></li>
-          <li><a href="../sections/status-metricas.html">Status e Métricas</a></li>
+          <li><a href="../sections/status-metricas.html">Status e Métricas (SaaS)</a></li>
           <li><a href="../sections/clientes-multitenant.html">Clientes e Multi-Tenant</a></li>
           <li><a href="../sections/relatorios-insights.html">Relatórios e Insights</a></li>
         </ul>
@@ -64,13 +65,44 @@
 <main class="container grid">
   <aside class="sidebar">
     <input type="search" id="search" placeholder="Pesquisar..." aria-label="Pesquisar documentação" />
-    <h6 class="muted">Atalhos</h6>
+    <h6 class="muted">Visão Geral</h6>
     <ul class="nav-list">
-      <li><a href="../sections/der-estrutura-banco.html">DER do Banco</a></li>
-      <li><a href="../sections/config-postgresql.html">PostgreSQL</a></li>
-      <li><a href="../sections/ambiente-evolution.html">Evolution API</a></li>
-      <li><a href="../sections/ambiente-maritaca.html">Maritaca</a></li>
-      <li><a href="../sections/ambiente-n8n.html">n8n</a></li>
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../sections/sobre-projeto.html">Sobre o Projeto</a></li>
+    </ul>
+    <h6 class="muted">Cenários</h6>
+    <ul class="nav-list">
+      <li><a href="../scenarios/recebe-mensagens.html">Recebe Mensagens</a></li>
+      <li><a href="../scenarios/processamento-resposta.html">Processamento de Resposta</a></li>
+      <li><a href="../scenarios/envio-resposta.html">Envio de Resposta</a></li>
+      <li><a href="../scenarios/envio-fotos.html">Envio de Fotos</a></li>
+      <li><a href="../scenarios/envio-arquivos.html">Envio de Arquivos</a></li>
+      <li><a href="../scenarios/executor-de-filas.html">Executor de Filas</a></li>
+      <li><a href="../scenarios/monitor-de-logs.html">Monitor de Logs</a></li>
+      <li><a href="../scenarios/scheduler-cadencias.html">Scheduler de Cadências</a></li>
+    </ul>
+    <h6 class="muted">Arquitetura & Banco</h6>
+    <ul class="nav-list">
+      <li><a href="../sections/der-estrutura-banco.html">DER e Estrutura do Banco</a></li>
+      <li><a href="../sections/config-postgresql.html">Configuração do PostgreSQL</a></li>
+    </ul>
+    <h6 class="muted">Configurações Técnicas</h6>
+    <ul class="nav-list">
+      <li><a href="../sections/config-vps.html">Configuração da VPS</a></li>
+      <li><a href="../sections/ambiente-n8n.html">Ambiente N8N</a></li>
+      <li><a href="../sections/ambiente-maritaca.html">Ambiente Maritaca</a></li>
+      <li><a href="../sections/ambiente-evolution.html">Ambiente Evolution API</a></li>
+      <li><a href="../sections/backup-retencao.html">Backup e Retenção</a></li>
+    </ul>
+    <h6 class="muted">Operação & DevOps</h6>
+    <ul class="nav-list">
+      <li><a href="../sections/deploy-atualizacoes.html">Deploy e Atualizações</a></li>
+      <li><a href="../sections/versionamento-filas.html">Versionamento e Filas</a></li>
+      <li><a href="../sections/seguranca-tokens.html">Segurança e Tokens</a></li>
+      <li><a href="../sections/logs-monitoramento.html">Logs e Monitoramento</a></li>
+      <li><a href="../sections/status-metricas.html">Status e Métricas (SaaS)</a></li>
+      <li><a href="../sections/clientes-multitenant.html">Clientes e Multi-Tenant</a></li>
+      <li><a href="../sections/relatorios-insights.html">Relatórios e Insights</a></li>
     </ul>
   </aside>
   <section class="content">
@@ -78,8 +110,7 @@
 <hgroup><h1>Ambiente Maritaca</h1><p class="muted">Chave, endpoint, requisições e logs.</p></hgroup>
 <article><h2>Variáveis</h2><pre><code>export MARITACA_API_KEY="sua_chave_aqui"
 export MARITACA_URL="https://api.maritaca.ai/v1/chat"</code></pre></article>
-<article><h2>Request</h2>
-<pre><code>curl -X POST $MARITACA_URL -H "Authorization: Bearer $MARITACA_API_KEY"  -H "Content-Type: application/json"  -d '{"model":"maritaca-v2","input":"Olá, tudo bem?","context":"Atendimento SDR Virtual"}'</code></pre></article>
+<article><h2>Request</h2><pre><code>curl -X POST $MARITACA_URL -H "Authorization: Bearer $MARITACA_API_KEY"  -H "Content-Type: application/json"  -d '{"model":"maritaca-v2","input":"Olá, tudo bem?","context":"Atendimento SDR Virtual"}'</code></pre></article>
 <article><h2>Resposta (exemplo)</h2><pre><code>{"output":"Olá! Sou a SDR Virtual, posso te ajudar?"}</code></pre></article>
 
   </section>
