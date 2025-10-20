@@ -8,6 +8,9 @@ html[data-theme="dark"] { color-scheme: dark; }
 .sidebar .nav-list li { margin:.25rem 0; }
 .sidebar input[type="search"]{ width:100%; }
 .logo{ width:22px; height:22px; border-radius:6px; margin-right:.4rem; vertical-align:middle; }
+nav .dropdown{ position:relative; }
+nav .dropdown .submenu{ display:none; position:absolute; right:0; background:var(--card-background-color); padding:.5rem; border-radius:.5rem; box-shadow:0 10px 30px rgba(0,0,0,.1); z-index:10; }
+nav .dropdown:hover .submenu{ display:block; }
 .fade-in{ animation:fade .22s ease-out; } @keyframes fade{ from{opacity:0} to{opacity:1} }
 .mermaid{ background:var(--card-background-color); border-radius:.5rem; padding:.75rem; }
 table{ font-size:.95rem; }

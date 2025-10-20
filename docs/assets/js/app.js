@@ -1,18 +1,16 @@
 
 window.addEventListener('DOMContentLoaded', ()=>{
   if (window.mermaid) mermaid.initialize({ startOnLoad:true, theme:'default' });
-  const search=document.querySelector('#search');
-  if (search){
-    search.addEventListener('input',()=>{
-      const q=search.value.toLowerCase();
-      document.querySelectorAll('.content *').forEach(el=>{
-        el.style.outline='';
-        if(q && el.textContent && el.textContent.toLowerCase().includes(q)){
-          el.style.outline='2px dashed var(--accent)';
-        }
-      });
+  const q=document.querySelector('#search');
+  if(q){ q.addEventListener('input',()=>{
+    const s=q.value.toLowerCase();
+    document.querySelectorAll('.content *').forEach(el=>{
+      el.style.outline='';
+      if(s && el.textContent && el.textContent.toLowerCase().includes(s)){
+        el.style.outline='2px dashed var(--accent)';
+      }
     });
-  }
+  });}
   const btn=document.getElementById('themeToggle');
   const root=document.documentElement;
   const saved=localStorage.getItem('sdr-theme')||'auto';

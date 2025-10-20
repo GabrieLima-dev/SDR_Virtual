@@ -19,7 +19,44 @@
     </ul>
     <ul>
       <li><a href="../index.html">Início</a></li>
-      <li><a href="../sections/der-estrutura-banco.html">DER & Banco</a></li>
+      <li><a href="../sections/sobre-projeto.html">Sobre o Projeto</a></li>
+      <li class="dropdown">
+        <a href="#" role="button">Cenários ▾</a>
+        <ul class="submenu">
+          <li><a href="../scenarios/recebe-mensagens.html">Recebe Mensagens</a></li>
+          <li><a href="../scenarios/processamento-resposta.html">Processamento de Resposta</a></li>
+          <li><a href="../scenarios/envio-resposta.html">Envio de Resposta</a></li>
+          <li><a href="../scenarios/envio-fotos.html">Envio de Fotos</a></li>
+          <li><a href="../scenarios/envio-arquivos.html">Envio de Arquivos</a></li>
+          <li><a href="../scenarios/executor-de-filas.html">Executor de Filas</a></li>
+          <li><a href="../scenarios/monitor-de-logs.html">Monitor de Logs</a></li>
+          <li><a href="../scenarios/scheduler-cadencias.html">Scheduler de Cadências</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" role="button">Arquitetura ▾</a>
+        <ul class="submenu">
+          <li><a href="../sections/der-estrutura-banco.html">DER e Estrutura do Banco</a></li>
+          <li><a href="../sections/config-postgresql.html">Configuração do PostgreSQL</a></li>
+          <li><a href="../sections/config-vps.html">Configuração da VPS</a></li>
+          <li><a href="../sections/ambiente-n8n.html">Ambiente N8N</a></li>
+          <li><a href="../sections/ambiente-maritaca.html">Ambiente Maritaca</a></li>
+          <li><a href="../sections/ambiente-evolution.html">Ambiente Evolution API</a></li>
+          <li><a href="../sections/backup-retencao.html">Backup e Retenção de Dados</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" role="button">Operação ▾</a>
+        <ul class="submenu">
+          <li><a href="../sections/deploy-atualizacoes.html">Deploy e Atualizações</a></li>
+          <li><a href="../sections/versionamento-filas.html">Versionamento e Filas</a></li>
+          <li><a href="../sections/seguranca-tokens.html">Segurança e Tokens</a></li>
+          <li><a href="../sections/logs-monitoramento.html">Logs e Monitoramento</a></li>
+          <li><a href="../sections/status-metricas.html">Status e Métricas</a></li>
+          <li><a href="../sections/clientes-multitenant.html">Clientes e Multi-Tenant</a></li>
+          <li><a href="../sections/relatorios-insights.html">Relatórios e Insights</a></li>
+        </ul>
+      </li>
       <li><button id="themeToggle" aria-label="Alternar tema">🌗</button></li>
     </ul>
   </nav>
@@ -27,31 +64,21 @@
 <main class="container grid">
   <aside class="sidebar">
     <input type="search" id="search" placeholder="Pesquisar..." aria-label="Pesquisar documentação" />
-    <h6 class="muted">Cenários</h6>
+    <h6 class="muted">Atalhos</h6>
     <ul class="nav-list">
-      <li><a href="../scenarios/recebe-mensagens.html">Recebe Mensagens</a></li>
-      <li><a href="../scenarios/processamento-resposta.html">Processamento de Resposta</a></li>
-      <li><a href="../scenarios/envio-resposta.html">Envio de Resposta</a></li>
-      <li><a href="../scenarios/envio-fotos.html">Envio de Fotos</a></li>
-      <li><a href="../scenarios/envio-arquivos.html">Envio de Arquivos</a></li>
-      <li><a href="../scenarios/executor-de-filas.html">Executor de Filas</a></li>
-      <li><a href="../scenarios/monitor-de-logs.html">Monitor de Logs</a></li>
-      <li><a href="../scenarios/scheduler-cadencias.html">Scheduler de Cadências</a></li>
-    </ul>
-    <h6 class="muted">Arquitetura & Banco</h6>
-    <ul class="nav-list">
-      <li><a href="../sections/der-estrutura-banco.html">DER e Estrutura do Banco</a></li>
-      <li><a href="../sections/config-postgresql.html">Configuração do PostgreSQL</a></li>
-      <li><a href="../sections/backup-retencao.html">Backup e Retenção de Dados</a></li>
+      <li><a href="../sections/der-estrutura-banco.html">DER do Banco</a></li>
+      <li><a href="../sections/config-postgresql.html">PostgreSQL</a></li>
+      <li><a href="../sections/ambiente-evolution.html">Evolution API</a></li>
+      <li><a href="../sections/ambiente-maritaca.html">Maritaca</a></li>
+      <li><a href="../sections/ambiente-n8n.html">n8n</a></li>
     </ul>
   </aside>
   <section class="content">
 
 <hgroup>
   <h1>DER e Estrutura do Banco (PostgreSQL)</h1>
-  <p class="muted">Documentação oficial das entidades, colunas e relações. Timestamps com <code>NOW()</code>; atualização automática de <code>data_hora_ultima_alteracao</code> por trigger.</p>
+  <p class="muted">Tabelas descritivas, relações e auditoria automática (_historico). Timestamps com NOW() e triggers.</p>
 </hgroup>
-
 <article>
   <h2>DER Visual</h2>
   <div class="mermaid">
@@ -73,227 +100,28 @@
       cliente ||--o{ sdr_bloqueio_atendimento : restringe
   </div>
 </article>
-
 <article>
   <h2>Convenções</h2>
   <ul>
-    <li>Nomes minúsculos com underscore.</li>
-    <li><code>data_hora_cadastro TIMESTAMP DEFAULT NOW()</code> e <code>data_hora_ultima_alteracao TIMESTAMP DEFAULT NOW()</code>.</li>
-    <li>Triggers de update para manter <code>data_hora_ultima_alteracao</code>.</li>
-    <li>Booleans: <code>DEFAULT TRUE</code> quando fizer sentido.</li>
+    <li>Nomes em minúsculo com underscore.</li>
+    <li><code>data_hora_cadastro TIMESTAMP DEFAULT NOW()</code>, <code>data_hora_ultima_alteracao TIMESTAMP DEFAULT NOW()</code>.</li>
+    <li>Triggers BEFORE UPDATE para manter <code>data_hora_ultima_alteracao</code>.</li>
+    <li>Booleans com <code>DEFAULT TRUE</code>.</li>
   </ul>
 </article>
-
 <hr>
-<h2>Núcleo Comercial</h2>
-
-<h3>cliente</h3>
-<table>
-<thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead>
-<tbody>
-<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
-<tr><td>nome</td><td>TEXT</td><td>Nome do cliente/empresa</td></tr>
-<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
-<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Atualizado por trigger</td></tr>
-</tbody></table>
-
-<h3>produto</h3>
-<table>
-<thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead>
-<tbody>
-<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
-<tr><td>nome_produto</td><td>TEXT</td><td>Nome do produto</td></tr>
-<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
-<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Atualizado por trigger</td></tr>
-</tbody></table>
-
-<h3>plano</h3>
-<table>
-<thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead>
-<tbody>
-<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
-<tr><td>id_produto</td><td>INT FK → produto(id)</td><td>Produto associado</td></tr>
-<tr><td>descricao</td><td>TEXT</td><td>Descrição do plano</td></tr>
-<tr><td>limite</td><td>INT</td><td>Limite de uso</td></tr>
-<tr><td>valor_mensal</td><td>NUMERIC(10,2)</td><td>Preço mensal</td></tr>
-<tr><td>ativo</td><td>BOOLEAN DEFAULT TRUE</td><td>Status</td></tr>
-<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
-<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Atualizado por trigger</td></tr>
-</tbody></table>
-
-<h3>contrato</h3>
-<table>
-<thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead>
-<tbody>
-<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
-<tr><td>id_cliente</td><td>INT FK → cliente(id)</td><td>Cliente</td></tr>
-<tr><td>id_produto</td><td>INT FK → produto(id)</td><td>Produto</td></tr>
-<tr><td>id_plano</td><td>INT FK → plano(id)</td><td>Plano</td></tr>
-<tr><td>data_inicial</td><td>DATE</td><td>Início</td></tr>
-<tr><td>data_final</td><td>DATE</td><td>Término</td></tr>
-<tr><td>ativo</td><td>BOOLEAN DEFAULT TRUE</td><td>Status</td></tr>
-<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
-<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Atualizado por trigger</td></tr>
-</tbody></table>
-
+<h2>Tabelas (descrições)</h2>
+<p>Ver a lista completa de colunas, tipo e propósito na versão anterior desta conversa; aqui mantemos o resumo por módulo.</p>
+<ul>
+  <li>Núcleo Comercial: <code>cliente</code>, <code>produto</code>, <code>plano</code>, <code>contrato</code></li>
+  <li>Configurações: <code>cliente_configuracao</code>, <code>sdr_cliente_config</code></li>
+  <li>Operacional: <code>sdr_leads</code>, <code>sdr_leads_historico</code>, <code>canal</code>, <code>sdr_situacao_interna</code>, <code>tipo_mensagem</code>, <code>sdr_mensagens</code></li>
+  <li>Contextos/Produtos: <code>sdr_contexto_cliente</code>, <code>sdr_produtos</code>, <code>sdr_imagem_produto</code></li>
+  <li>Controle: <code>sdr_bloqueio_atendimento</code></li>
+</ul>
 <hr>
-<h2>Configurações & Ambiente</h2>
-
-<h3>cliente_configuracao</h3>
-<table>
-<thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead>
-<tbody>
-<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
-<tr><td>id_cliente</td><td>INT FK → cliente(id)</td><td>Cliente</td></tr>
-<tr><td>evol_api_key</td><td>TEXT</td><td>Chave Evolution</td></tr>
-<tr><td>evol_phone_number</td><td>TEXT</td><td>Número WhatsApp</td></tr>
-<tr><td>maritaca_api_key</td><td>TEXT</td><td>Chave Maritaca</td></tr>
-<tr><td>fuso_horario</td><td>TEXT</td><td>Ex.: America/Maceio</td></tr>
-<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
-<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Atualizado por trigger</td></tr>
-</tbody></table>
-
-<h3>sdr_cliente_config</h3>
-<table>
-<thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead>
-<tbody>
-<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
-<tr><td>id_cliente</td><td>INT FK → cliente(id)</td><td>Cliente</td></tr>
-<tr><td>limite_followups</td><td>INT</td><td>Máximo de follow-ups</td></tr>
-<tr><td>intervalo_followup</td><td>INT</td><td>Intervalo (min)</td></tr>
-<tr><td>janela_envio</td><td>VARCHAR(20)</td><td>HH:MM-HH:MM</td></tr>
-<tr><td>anti_spam_ativo</td><td>BOOLEAN DEFAULT TRUE</td><td>Jitter/pacing</td></tr>
-<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
-<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Atualizado por trigger</td></tr>
-</tbody></table>
-
-<hr>
-<h2>Operacional</h2>
-
-<h3>canal</h3>
-<table><thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody>
-<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
-<tr><td>nome</td><td>TEXT</td><td>WhatsApp, Site...</td></tr>
-<tr><td>ativo</td><td>BOOLEAN DEFAULT TRUE</td><td>Status</td></tr>
-<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
-<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Atualizado por trigger</td></tr>
-</tbody></table>
-
-<h3>sdr_situacao_interna</h3>
-<table><thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody>
-<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
-<tr><td>nome</td><td>TEXT</td><td>Situação do lead</td></tr>
-<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
-<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Atualizado por trigger</td></tr>
-</tbody></table>
-
-<h3>sdr_leads</h3>
-<table><thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody>
-<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
-<tr><td>id_cliente</td><td>INT FK → cliente(id)</td><td>Cliente dono</td></tr>
-<tr><td>id_lead</td><td>TEXT</td><td>ID CRM</td></tr>
-<tr><td>whatsapp_id</td><td>TEXT</td><td>Número do lead</td></tr>
-<tr><td>id_situacao_interna</td><td>INT FK → sdr_situacao_interna(id)</td><td>Status atual</td></tr>
-<tr><td>tentativas_contato</td><td>INT DEFAULT 0</td><td>Tentativas</td></tr>
-<tr><td>canal</td><td>INT FK → canal(id)</td><td>Origem</td></tr>
-<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
-<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Trigger</td></tr>
-</tbody></table>
-
-<h3>sdr_leads_historico</h3>
-<table><thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody>
-<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
-<tr><td>id_cliente</td><td>INT FK → cliente(id)</td><td>Cliente</td></tr>
-<tr><td>id_lead</td><td>INT FK → sdr_leads(id)</td><td>Lead</td></tr>
-<tr><td>id_situacao_interna_anterior</td><td>INT FK → sdr_situacao_interna(id)</td><td>Anterior</td></tr>
-<tr><td>id_situacao_interna_nova</td><td>INT FK → sdr_situacao_interna(id)</td><td>Nova</td></tr>
-<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Quando</td></tr>
-</tbody></table>
-
-<h3>tipo_mensagem</h3>
-<table><thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody>
-<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
-<tr><td>nome</td><td>TEXT</td><td>Texto, Imagem, Documento, Áudio...</td></tr>
-<tr><td>descricao</td><td>TEXT</td><td>Detalhes</td></tr>
-<tr><td>ativo</td><td>BOOLEAN DEFAULT TRUE</td><td>Status</td></tr>
-<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
-<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Trigger</td></tr>
-</tbody></table>
-
-<h3>sdr_mensagens</h3>
-<table><thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody>
-<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
-<tr><td>id_cliente</td><td>INT FK → cliente(id)</td><td>Cliente</td></tr>
-<tr><td>id_lead</td><td>INT FK → sdr_leads(id)</td><td>Lead</td></tr>
-<tr><td>whatsapp_id</td><td>TEXT</td><td>ID único da mensagem</td></tr>
-<tr><td>whatsapp_name</td><td>TEXT</td><td>Nome do remetente</td></tr>
-<tr><td>role</td><td>TEXT</td><td>user | assistant | system</td></tr>
-<tr><td>texto</td><td>TEXT</td><td>Conteúdo</td></tr>
-<tr><td>tipo_mensagem</td><td>INT FK → tipo_mensagem(id)</td><td>Tipo</td></tr>
-<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Momento</td></tr>
-<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Trigger</td></tr>
-</tbody></table>
-
-<hr>
-<h2>Contextos e Produtos</h2>
-
-<h3>sdr_contexto_cliente</h3>
-<p><strong>contexto_base</strong> = tom de voz, políticas e instruções. <strong>contexto_institucional</strong> = conhecimento geral da empresa.</p>
-<table><thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody>
-<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
-<tr><td>id_cliente</td><td>INT FK → cliente(id)</td><td>Cliente</td></tr>
-<tr><td>contexto_base</td><td>TEXT</td><td>Tom de voz, políticas e instruções</td></tr>
-<tr><td>contexto_institucional</td><td>TEXT</td><td>Conhecimento geral</td></tr>
-<tr><td>ativo</td><td>BOOLEAN DEFAULT TRUE</td><td>Status</td></tr>
-<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
-<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Trigger</td></tr>
-</tbody></table>
-
-<h3>sdr_produtos</h3>
-<table><thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody>
-<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
-<tr><td>id_cliente</td><td>INT FK → cliente(id)</td><td>Cliente</td></tr>
-<tr><td>nome</td><td>TEXT</td><td>Nome do produto</td></tr>
-<tr><td>contexto_produto</td><td>TEXT</td><td>Conteúdo sobre o produto</td></tr>
-<tr><td>ativo</td><td>BOOLEAN DEFAULT TRUE</td><td>Status</td></tr>
-<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
-<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Trigger</td></tr>
-</tbody></table>
-
-<h3>sdr_imagem_produto</h3>
-<table><thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody>
-<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
-<tr><td>id_cliente</td><td>INT FK → cliente(id)</td><td>Cliente</td></tr>
-<tr><td>id_produto</td><td>INT FK → sdr_produtos(id)</td><td>Produto</td></tr>
-<tr><td>nome</td><td>TEXT</td><td>Título</td></tr>
-<tr><td>descricao</td><td>TEXT</td><td>Descrição</td></tr>
-<tr><td>url_download</td><td>TEXT</td><td>Download</td></tr>
-<tr><td>url_view</td><td>TEXT</td><td>Visualização</td></tr>
-<tr><td>ativo</td><td>BOOLEAN DEFAULT TRUE</td><td>Status</td></tr>
-<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
-<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Trigger</td></tr>
-</tbody></table>
-
-<hr>
-<h2>Controle de Atendimento</h2>
-
-<h3>sdr_bloqueio_atendimento</h3>
-<table><thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody>
-<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
-<tr><td>id_cliente</td><td>INT FK → cliente(id)</td><td>Cliente</td></tr>
-<tr><td>whatsapp_id</td><td>TEXT</td><td>Número do contato</td></tr>
-<tr><td>whatsapp_name</td><td>TEXT</td><td>Nome</td></tr>
-<tr><td>id_lead</td><td>INT FK → sdr_leads(id)</td><td>Lead rel.</td></tr>
-<tr><td>descricao</td><td>TEXT</td><td>Motivo</td></tr>
-<tr><td>ativo</td><td>BOOLEAN DEFAULT TRUE</td><td>Status</td></tr>
-<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
-<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Trigger</td></tr>
-</tbody></table>
-
-<hr>
-<h2>Tabelas com Histórico (Auditoria Automática)</h2>
-
-<h3>Lista</h3>
+<h2>Auditoria Automática</h2>
+<h3>Tabelas auditáveis</h3>
 <table>
 <thead><tr><th>Tabela principal</th><th>Tabela histórico</th><th>Motivo</th></tr></thead>
 <tbody>
@@ -303,16 +131,63 @@
 <tr><td>sdr_produtos</td><td>sdr_produtos_historico</td><td>Conteúdo de produtos</td></tr>
 <tr><td>sdr_imagem_produto</td><td>sdr_imagem_produto_historico</td><td>URLs e metadados</td></tr>
 <tr><td>sdr_leads</td><td>sdr_leads_historico</td><td>Status e dados do lead</td></tr>
-</tbody>
-</table>
-
-<p><em>Formato de histórico</em>: <code>id</code>, <code>id_registro</code>, <code>campo_alterado</code>, <code>valor_anterior</code>, <code>valor_novo</code>, <code>alterado_por</code>, <code>host</code>, <code>aplicacao</code>, <code>data_hora_cadastro DEFAULT NOW()</code>.</p>
-
+</tbody></table>
+<h3>Snippets SQL</h3>
+<details>
+  <summary><strong>Trigger genérica de atualização de data_hora_ultima_alteracao</strong></summary>
+  <pre><code>CREATE OR REPLACE FUNCTION atualizar_data_modificacao()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.data_hora_ultima_alteracao = NOW();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;</code></pre>
+  <pre><code>CREATE TRIGGER trg_update_cliente BEFORE UPDATE ON cliente
+FOR EACH ROW EXECUTE FUNCTION atualizar_data_modificacao();</code></pre>
+</details>
+<details>
+  <summary><strong>Auditoria automática (exemplo sdr_contexto_cliente)</strong></summary>
+  <pre><code>CREATE TABLE IF NOT EXISTS sdr_contexto_cliente_historico (
+  id SERIAL PRIMARY KEY,
+  id_contexto INT REFERENCES sdr_contexto_cliente(id),
+  campo_alterado TEXT NOT NULL,
+  valor_anterior TEXT,
+  valor_novo TEXT,
+  alterado_por TEXT,
+  host TEXT,
+  aplicacao TEXT,
+  data_hora_cadastro TIMESTAMP DEFAULT NOW() NOT NULL
+);</code></pre>
+  <pre><code>CREATE OR REPLACE FUNCTION auditar_sdr_contexto()
+RETURNS TRIGGER AS $$
+DECLARE
+  campo TEXT;
+  antigo TEXT;
+  novo TEXT;
+BEGIN
+  FOR campo IN SELECT column_name FROM information_schema.columns
+               WHERE table_name = 'sdr_contexto_cliente'
+  LOOP
+    EXECUTE format('SELECT ($1).' || campo || '::text', OLD) INTO antigo;
+    EXECUTE format('SELECT ($1).' || campo || '::text', NEW) INTO novo;
+    IF antigo IS DISTINCT FROM novo THEN
+      INSERT INTO sdr_contexto_cliente_historico
+        (id_contexto, campo_alterado, valor_anterior, valor_novo, alterado_por, host, aplicacao)
+      VALUES (OLD.id, campo, antigo, novo, current_user, inet_client_addr(), 'API / N8N');
+    END IF;
+  END LOOP;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;</code></pre>
+  <pre><code>CREATE TRIGGER trg_audit_contexto
+AFTER UPDATE ON sdr_contexto_cliente
+FOR EACH ROW EXECUTE FUNCTION auditar_sdr_contexto();</code></pre>
+</details>
 
   </section>
 </main>
 <footer class="container">
-  <small>© 2025 SDR Virtual · Documentação.</small>
+  <small>© 2025 SDR Virtual — Documentação Técnica.</small>
 </footer>
 </body>
 </html>
