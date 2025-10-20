@@ -44,5 +44,97 @@ Desenvolver uma **SDR Virtual Inteligente** capaz de:
 
 ---
 
-## ⚙️ Arquitetura do MVP
+## 🧱 Arquitetura do MVP
+
+A arquitetura da SDR Virtual Inteligente foi desenhada para ser leve, modular e escalável, garantindo baixo custo e alta performance no MVP.
+Cada componente conversa entre si de forma harmônica, garantindo fluidez e autonomia no atendimento via WhatsApp.
+
+                💬 Usuário (WhatsApp)
+                          │
+                          ▼
+                🌐 Evolution API (Gateway)
+                          │
+                          ▼
+        ⚙️ n8n (Automação + IA Maritaca)
+        ├── Fluxos de automação
+        ├── Regras de follow-up
+        └── Interação com a IA (Sabiazinho-3)
+                          │
+                          ▼
+         🗄️ Banco de Dados (PostgreSQL)
+        ├── Leads
+        ├── Cadências
+        └── Logs de atendimento
+                          │
+                          ▼
+          ☁️ Google Drive (Armazenamento)
+                └── Imagens e arquivos enviados
+
+## 👉 Resumo da Comunicação entre os Componentes:
+O usuário interage via WhatsApp, enviando mensagens, fotos ou dúvidas.
+A Evolution API recebe essas mensagens e repassa ao n8n.
+O n8n processa os dados, aciona a IA da Maritaca para gerar respostas inteligentes e aplica regras de cadência.
+As informações são registradas no PostgreSQL (leads, status, logs).
+Caso haja envio de mídia, as imagens são armazenadas no Google Drive.
+
+## 🚀 Arquitetura Evolutiva da Solução
+
+O projeto foi construído com base **modular e escalável**, permitindo evolução natural para um ecossistema distribuído:
+
+- 🔹 **n8n Cloud Pro** para automações escaláveis;
+- 🔹 **Banco isolado em PostgreSQL Cloud**;
+- 🔹 **Portal administrativo (FastAPI ou Spring Boot)** com dashboards e controle de múltiplos clientes;
+- 🔹 **Autenticação segura (JWT / OAuth2)** e controle de usuários;
+- 🔹 **Integração com CRMs e ferramentas de marketing**;
+- 🔹 **IA avançada (OpenAI / GPT-5)** para respostas mais humanas;
+- 🔹 **Alta disponibilidade e escalabilidade horizontal**.
+
+---
+
+## 💰 Custos
+
+### 💻 Desenvolvimento (Projeto Fechado)
+
+### ☁️ Custos Mensais do MVP
+
+| Serviço | Descrição | Valor (R$) |
+|----------|------------|-----------:|
+| Ocean Digital (VPS + Banco + n8n) | Hospedagem completa | 59,78 |
+| Maritaca AI (Sabiazinho-3) | API compatível com OpenAI | 1,00 |
+| Google Drive | Armazenamento gratuito | 0,00 |
+| Evolution API | Integração com WhatsApp | 0,00 |
+| Número WhatsApp (chip pessoal) | Linha própria | 0,00 |
+| **Total mensal (MVP)** |  | **≈ R$ 60,78** |
+
+---
+
+## 🧩 Pós-MVP (Escalabilidade e Produção)
+
+| Serviço | Descrição | Valor (R$) |
+|----------|------------|-----------:|
+| Ocean Digital | Infraestrutura completa (API, banco e backend) | 59,78 |
+| N8N Cloud (Pro) | Automação e IA escalável | 350,00 |
+| Google Drive (Storage) | Armazenamento em nuvem | 0,04/GB |
+| OpenAI (GPT-5) | IA avançada para produção | 358,68 |
+| Evolution API (Pro) | Envio de mídia e cadência profissional | 0,00 |
+| Número WhatsApp (chip físico) | Linha dedicada | 20,00 |
+| **Total estimado** |  | **≈ R$ 800,00/mês** |
+
+---
+
+## 🧰 Ferramentas de Desenvolvimento
+
+- **Visual Studio Code** — Desenvolvimento e testes
+- **Postman / Thunder Client** — Testes de APIs
+- **Draw.io / Figma** — Modelagem visual
+- **Azure Data Studio** — Visualização e análise do banco de dados
+- **Docker Compose** — Empacotamento e deploy local do n8n e Postgres
+
+
+---
+
+## 📜 Licença
+
+Este projeto está licenciado sob a [MIT License](LICENSE).
+
 
