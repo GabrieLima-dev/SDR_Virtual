@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DER e Estrutura do Banco · SDR Virtual</title>
-  <meta name="description" content="Documentação oficial do projeto SDR Virtual — arquitetura de cenários e guias."/>
   <link rel="icon" href="../favicon.ico">
   <link rel="apple-touch-icon" href="../assets/img/favicon.png">
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.min.css">
@@ -16,44 +15,12 @@
 <header class="container header">
   <nav>
     <ul>
-      <li><img src="../assets/img/favicon.png" alt="SDR" class="logo"/><strong>SDR Virtual</strong></li>
+      <li><img src="../assets/img/favicon.png" class="logo" alt="SDR"/><strong>SDR Virtual</strong></li>
     </ul>
     <ul>
       <li><a href="../index.html">Início</a></li>
-      <li class="dropdown">
-        <a href="#" role="button" class="contrast">Cenários ▾</a>
-        <ul class="submenu">
-          <li><a href="../scenarios/recebe-mensagens.html">Recebe Mensagens</a></li>
-          <li><a href="../scenarios/processamento-resposta.html">Processamento de Resposta</a></li>
-          <li><a href="../scenarios/envio-resposta.html">Envio de Resposta</a></li>
-          <li><a href="../scenarios/envio-fotos.html">Envio de Fotos</a></li>
-          <li><a href="../scenarios/envio-arquivos.html">Envio de Arquivos</a></li>
-          <li><a href="../scenarios/executor-de-filas.html">Executor de Filas</a></li>
-          <li><a href="../scenarios/monitor-de-logs.html">Monitor de Logs</a></li>
-          <li><a href="../scenarios/scheduler-cadencias.html">Scheduler de Cadências</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="#" role="button">Mais ▾</a>
-        <ul class="submenu">
-          <li><a href="../sections/der-estrutura-banco.html">DER e Estrutura do Banco</a></li>
-          <li><a href="../sections/config-postgresql.html">Configuração do PostgreSQL</a></li>
-          <li><a href="../sections/backup-retencao.html">Backup e Retenção de Dados</a></li>
-          <li><a href="../sections/config-vps.html">Configuração da VPS</a></li>
-          <li><a href="../sections/ambiente-n8n.html">Ambiente N8N</a></li>
-          <li><a href="../sections/ambiente-maritaca.html">Ambiente Maritaca</a></li>
-          <li><a href="../sections/ambiente-evolution.html">Ambiente Evolution API</a></li>
-          <li><a href="../sections/deploy-atualizacoes.html">Deploy e Atualizações</a></li>
-          <li><a href="../sections/versionamento-filas.html">Versionamento e Filas</a></li>
-          <li><a href="../sections/seguranca-tokens.html">Segurança e Tokens</a></li>
-          <li><a href="../sections/logs-monitoramento.html">Logs e Monitoramento Avançado</a></li>
-          <li><a href="../sections/status-metricas.html">Status e Métricas (SaaS)</a></li>
-          <li><a href="../sections/clientes-multitenant.html">Clientes e Multi-Tenant</a></li>
-          <li><a href="../sections/relatorios-insights.html">Relatórios e Insights</a></li>
-        </ul>
-      </li>
+      <li><a href="../sections/der-estrutura-banco.html">DER & Banco</a></li>
       <li><button id="themeToggle" aria-label="Alternar tema">🌗</button></li>
-      <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
     </ul>
   </nav>
 </header>
@@ -77,54 +44,275 @@
       <li><a href="../sections/config-postgresql.html">Configuração do PostgreSQL</a></li>
       <li><a href="../sections/backup-retencao.html">Backup e Retenção de Dados</a></li>
     </ul>
-    <h6 class="muted">Infraestrutura</h6>
-    <ul class="nav-list">
-      <li><a href="../sections/config-vps.html">Configuração da VPS</a></li>
-      <li><a href="../sections/ambiente-n8n.html">Ambiente N8N</a></li>
-      <li><a href="../sections/ambiente-maritaca.html">Ambiente Maritaca</a></li>
-      <li><a href="../sections/ambiente-evolution.html">Ambiente Evolution API</a></li>
-    </ul>
-    <h6 class="muted">Operação & DevOps</h6>
-    <ul class="nav-list">
-      <li><a href="../sections/deploy-atualizacoes.html">Deploy e Atualizações</a></li>
-      <li><a href="../sections/versionamento-filas.html">Versionamento e Filas</a></li>
-      <li><a href="../sections/seguranca-tokens.html">Segurança e Tokens</a></li>
-      <li><a href="../sections/logs-monitoramento.html">Logs e Monitoramento Avançado</a></li>
-    </ul>
-    <h6 class="muted">Painel SaaS (Futuro)</h6>
-    <ul class="nav-list">
-      <li><a href="../sections/status-metricas.html">Status e Métricas</a></li>
-      <li><a href="../sections/clientes-multitenant.html">Clientes e Multi-Tenant</a></li>
-      <li><a href="../sections/relatorios-insights.html">Relatórios e Insights</a></li>
-    </ul>
   </aside>
   <section class="content">
 
 <hgroup>
-  <h1>DER e Estrutura do Banco</h1>
-  <p class="muted">Em construção • Esta página receberá conteúdo detalhado em breve.</p>
+  <h1>DER e Estrutura do Banco (PostgreSQL)</h1>
+  <p class="muted">Documentação oficial das entidades, colunas e relações. Timestamps com <code>NOW()</code>; atualização automática de <code>data_hora_ultima_alteracao</code> por trigger.</p>
 </hgroup>
 
 <article>
-  <h2>Resumo</h2>
-  <p>Estrutura base criada. Utilize esta página para documentar <strong>DER e Estrutura do Banco</strong> com clareza, exemplos e diagramas.</p>
+  <h2>DER Visual</h2>
+  <div class="mermaid">
+    erDiagram
+      cliente ||--o{ contrato : possui
+      produto ||--o{ plano : compoe
+      plano ||--o{ contrato : define
+      cliente ||--o{ cliente_configuracao : tem
+      cliente ||--o{ sdr_cliente_config : controla
+      cliente ||--o{ sdr_leads : atende
+      sdr_situacao_interna ||--o{ sdr_leads : classifica
+      canal ||--o{ sdr_leads : origina
+      sdr_leads ||--o{ sdr_leads_historico : versiona
+      sdr_leads ||--o{ sdr_mensagens : troca
+      tipo_mensagem ||--o{ sdr_mensagens : tipa
+      cliente ||--o{ sdr_contexto_cliente : contextualiza
+      cliente ||--o{ sdr_produtos : oferta
+      sdr_produtos ||--o{ sdr_imagem_produto : ilustra
+      cliente ||--o{ sdr_bloqueio_atendimento : restringe
+  </div>
 </article>
 
 <article>
-  <h2>Checklist inicial</h2>
+  <h2>Convenções</h2>
   <ul>
-    <li>Contexto e objetivos</li>
-    <li>Passos e pré-requisitos</li>
-    <li>Exemplos de configuração</li>
-    <li>Boas práticas</li>
-    <li>Problemas comuns e soluções</li>
+    <li>Nomes minúsculos com underscore.</li>
+    <li><code>data_hora_cadastro TIMESTAMP DEFAULT NOW()</code> e <code>data_hora_ultima_alteracao TIMESTAMP DEFAULT NOW()</code>.</li>
+    <li>Triggers de update para manter <code>data_hora_ultima_alteracao</code>.</li>
+    <li>Booleans: <code>DEFAULT TRUE</code> quando fizer sentido.</li>
   </ul>
 </article>
+
+<hr>
+<h2>Núcleo Comercial</h2>
+
+<h3>cliente</h3>
+<table>
+<thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead>
+<tbody>
+<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
+<tr><td>nome</td><td>TEXT</td><td>Nome do cliente/empresa</td></tr>
+<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
+<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Atualizado por trigger</td></tr>
+</tbody></table>
+
+<h3>produto</h3>
+<table>
+<thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead>
+<tbody>
+<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
+<tr><td>nome_produto</td><td>TEXT</td><td>Nome do produto</td></tr>
+<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
+<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Atualizado por trigger</td></tr>
+</tbody></table>
+
+<h3>plano</h3>
+<table>
+<thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead>
+<tbody>
+<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
+<tr><td>id_produto</td><td>INT FK → produto(id)</td><td>Produto associado</td></tr>
+<tr><td>descricao</td><td>TEXT</td><td>Descrição do plano</td></tr>
+<tr><td>limite</td><td>INT</td><td>Limite de uso</td></tr>
+<tr><td>valor_mensal</td><td>NUMERIC(10,2)</td><td>Preço mensal</td></tr>
+<tr><td>ativo</td><td>BOOLEAN DEFAULT TRUE</td><td>Status</td></tr>
+<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
+<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Atualizado por trigger</td></tr>
+</tbody></table>
+
+<h3>contrato</h3>
+<table>
+<thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead>
+<tbody>
+<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
+<tr><td>id_cliente</td><td>INT FK → cliente(id)</td><td>Cliente</td></tr>
+<tr><td>id_produto</td><td>INT FK → produto(id)</td><td>Produto</td></tr>
+<tr><td>id_plano</td><td>INT FK → plano(id)</td><td>Plano</td></tr>
+<tr><td>data_inicial</td><td>DATE</td><td>Início</td></tr>
+<tr><td>data_final</td><td>DATE</td><td>Término</td></tr>
+<tr><td>ativo</td><td>BOOLEAN DEFAULT TRUE</td><td>Status</td></tr>
+<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
+<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Atualizado por trigger</td></tr>
+</tbody></table>
+
+<hr>
+<h2>Configurações & Ambiente</h2>
+
+<h3>cliente_configuracao</h3>
+<table>
+<thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead>
+<tbody>
+<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
+<tr><td>id_cliente</td><td>INT FK → cliente(id)</td><td>Cliente</td></tr>
+<tr><td>evol_api_key</td><td>TEXT</td><td>Chave Evolution</td></tr>
+<tr><td>evol_phone_number</td><td>TEXT</td><td>Número WhatsApp</td></tr>
+<tr><td>maritaca_api_key</td><td>TEXT</td><td>Chave Maritaca</td></tr>
+<tr><td>fuso_horario</td><td>TEXT</td><td>Ex.: America/Maceio</td></tr>
+<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
+<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Atualizado por trigger</td></tr>
+</tbody></table>
+
+<h3>sdr_cliente_config</h3>
+<table>
+<thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead>
+<tbody>
+<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
+<tr><td>id_cliente</td><td>INT FK → cliente(id)</td><td>Cliente</td></tr>
+<tr><td>limite_followups</td><td>INT</td><td>Máximo de follow-ups</td></tr>
+<tr><td>intervalo_followup</td><td>INT</td><td>Intervalo (min)</td></tr>
+<tr><td>janela_envio</td><td>VARCHAR(20)</td><td>HH:MM-HH:MM</td></tr>
+<tr><td>anti_spam_ativo</td><td>BOOLEAN DEFAULT TRUE</td><td>Jitter/pacing</td></tr>
+<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
+<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Atualizado por trigger</td></tr>
+</tbody></table>
+
+<hr>
+<h2>Operacional</h2>
+
+<h3>canal</h3>
+<table><thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody>
+<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
+<tr><td>nome</td><td>TEXT</td><td>WhatsApp, Site...</td></tr>
+<tr><td>ativo</td><td>BOOLEAN DEFAULT TRUE</td><td>Status</td></tr>
+<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
+<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Atualizado por trigger</td></tr>
+</tbody></table>
+
+<h3>sdr_situacao_interna</h3>
+<table><thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody>
+<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
+<tr><td>nome</td><td>TEXT</td><td>Situação do lead</td></tr>
+<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
+<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Atualizado por trigger</td></tr>
+</tbody></table>
+
+<h3>sdr_leads</h3>
+<table><thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody>
+<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
+<tr><td>id_cliente</td><td>INT FK → cliente(id)</td><td>Cliente dono</td></tr>
+<tr><td>id_lead</td><td>TEXT</td><td>ID CRM</td></tr>
+<tr><td>whatsapp_id</td><td>TEXT</td><td>Número do lead</td></tr>
+<tr><td>id_situacao_interna</td><td>INT FK → sdr_situacao_interna(id)</td><td>Status atual</td></tr>
+<tr><td>tentativas_contato</td><td>INT DEFAULT 0</td><td>Tentativas</td></tr>
+<tr><td>canal</td><td>INT FK → canal(id)</td><td>Origem</td></tr>
+<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
+<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Trigger</td></tr>
+</tbody></table>
+
+<h3>sdr_leads_historico</h3>
+<table><thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody>
+<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
+<tr><td>id_cliente</td><td>INT FK → cliente(id)</td><td>Cliente</td></tr>
+<tr><td>id_lead</td><td>INT FK → sdr_leads(id)</td><td>Lead</td></tr>
+<tr><td>id_situacao_interna_anterior</td><td>INT FK → sdr_situacao_interna(id)</td><td>Anterior</td></tr>
+<tr><td>id_situacao_interna_nova</td><td>INT FK → sdr_situacao_interna(id)</td><td>Nova</td></tr>
+<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Quando</td></tr>
+</tbody></table>
+
+<h3>tipo_mensagem</h3>
+<table><thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody>
+<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
+<tr><td>nome</td><td>TEXT</td><td>Texto, Imagem, Documento, Áudio...</td></tr>
+<tr><td>descricao</td><td>TEXT</td><td>Detalhes</td></tr>
+<tr><td>ativo</td><td>BOOLEAN DEFAULT TRUE</td><td>Status</td></tr>
+<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
+<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Trigger</td></tr>
+</tbody></table>
+
+<h3>sdr_mensagens</h3>
+<table><thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody>
+<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
+<tr><td>id_cliente</td><td>INT FK → cliente(id)</td><td>Cliente</td></tr>
+<tr><td>id_lead</td><td>INT FK → sdr_leads(id)</td><td>Lead</td></tr>
+<tr><td>whatsapp_id</td><td>TEXT</td><td>ID único da mensagem</td></tr>
+<tr><td>whatsapp_name</td><td>TEXT</td><td>Nome do remetente</td></tr>
+<tr><td>role</td><td>TEXT</td><td>user | assistant | system</td></tr>
+<tr><td>texto</td><td>TEXT</td><td>Conteúdo</td></tr>
+<tr><td>tipo_mensagem</td><td>INT FK → tipo_mensagem(id)</td><td>Tipo</td></tr>
+<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Momento</td></tr>
+<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Trigger</td></tr>
+</tbody></table>
+
+<hr>
+<h2>Contextos e Produtos</h2>
+
+<h3>sdr_contexto_cliente</h3>
+<p><strong>contexto_base</strong> = tom de voz, políticas e instruções. <strong>contexto_institucional</strong> = conhecimento geral da empresa.</p>
+<table><thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody>
+<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
+<tr><td>id_cliente</td><td>INT FK → cliente(id)</td><td>Cliente</td></tr>
+<tr><td>contexto_base</td><td>TEXT</td><td>Tom de voz, políticas e instruções</td></tr>
+<tr><td>contexto_institucional</td><td>TEXT</td><td>Conhecimento geral</td></tr>
+<tr><td>ativo</td><td>BOOLEAN DEFAULT TRUE</td><td>Status</td></tr>
+<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
+<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Trigger</td></tr>
+</tbody></table>
+
+<h3>sdr_produtos</h3>
+<table><thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody>
+<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
+<tr><td>id_cliente</td><td>INT FK → cliente(id)</td><td>Cliente</td></tr>
+<tr><td>nome</td><td>TEXT</td><td>Nome do produto</td></tr>
+<tr><td>contexto_produto</td><td>TEXT</td><td>Conteúdo sobre o produto</td></tr>
+<tr><td>ativo</td><td>BOOLEAN DEFAULT TRUE</td><td>Status</td></tr>
+<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
+<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Trigger</td></tr>
+</tbody></table>
+
+<h3>sdr_imagem_produto</h3>
+<table><thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody>
+<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
+<tr><td>id_cliente</td><td>INT FK → cliente(id)</td><td>Cliente</td></tr>
+<tr><td>id_produto</td><td>INT FK → sdr_produtos(id)</td><td>Produto</td></tr>
+<tr><td>nome</td><td>TEXT</td><td>Título</td></tr>
+<tr><td>descricao</td><td>TEXT</td><td>Descrição</td></tr>
+<tr><td>url_download</td><td>TEXT</td><td>Download</td></tr>
+<tr><td>url_view</td><td>TEXT</td><td>Visualização</td></tr>
+<tr><td>ativo</td><td>BOOLEAN DEFAULT TRUE</td><td>Status</td></tr>
+<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
+<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Trigger</td></tr>
+</tbody></table>
+
+<hr>
+<h2>Controle de Atendimento</h2>
+
+<h3>sdr_bloqueio_atendimento</h3>
+<table><thead><tr><th>Coluna</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody>
+<tr><td>id</td><td>SERIAL PK</td><td>Identificador</td></tr>
+<tr><td>id_cliente</td><td>INT FK → cliente(id)</td><td>Cliente</td></tr>
+<tr><td>whatsapp_id</td><td>TEXT</td><td>Número do contato</td></tr>
+<tr><td>whatsapp_name</td><td>TEXT</td><td>Nome</td></tr>
+<tr><td>id_lead</td><td>INT FK → sdr_leads(id)</td><td>Lead rel.</td></tr>
+<tr><td>descricao</td><td>TEXT</td><td>Motivo</td></tr>
+<tr><td>ativo</td><td>BOOLEAN DEFAULT TRUE</td><td>Status</td></tr>
+<tr><td>data_hora_cadastro</td><td>TIMESTAMP DEFAULT NOW()</td><td>Criação</td></tr>
+<tr><td>data_hora_ultima_alteracao</td><td>TIMESTAMP DEFAULT NOW()</td><td>Trigger</td></tr>
+</tbody></table>
+
+<hr>
+<h2>Tabelas com Histórico (Auditoria Automática)</h2>
+
+<h3>Lista</h3>
+<table>
+<thead><tr><th>Tabela principal</th><th>Tabela histórico</th><th>Motivo</th></tr></thead>
+<tbody>
+<tr><td>sdr_contexto_cliente</td><td>sdr_contexto_cliente_historico</td><td>Contextos da IA</td></tr>
+<tr><td>sdr_cliente_config</td><td>sdr_cliente_config_historico</td><td>Flags e limites</td></tr>
+<tr><td>cliente_configuracao</td><td>cliente_configuracao_historico</td><td>Tokens e integrações</td></tr>
+<tr><td>sdr_produtos</td><td>sdr_produtos_historico</td><td>Conteúdo de produtos</td></tr>
+<tr><td>sdr_imagem_produto</td><td>sdr_imagem_produto_historico</td><td>URLs e metadados</td></tr>
+<tr><td>sdr_leads</td><td>sdr_leads_historico</td><td>Status e dados do lead</td></tr>
+</tbody>
+</table>
+
+<p><em>Formato de histórico</em>: <code>id</code>, <code>id_registro</code>, <code>campo_alterado</code>, <code>valor_anterior</code>, <code>valor_novo</code>, <code>alterado_por</code>, <code>host</code>, <code>aplicacao</code>, <code>data_hora_cadastro DEFAULT NOW()</code>.</p>
+
 
   </section>
 </main>
 <footer class="container">
-  <small>© 2025 SDR Virtual · Documentação técnica. | Tema: Pico.css · Mermaid</small>
+  <small>© 2025 SDR Virtual · Documentação.</small>
 </footer>
 </body>
 </html>

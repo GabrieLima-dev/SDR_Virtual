@@ -1,34 +1,14 @@
 
-:root { --accent: #27ae60; }
-
+:root { --accent:#27ae60; }
 html[data-theme="dark"] { color-scheme: dark; }
-
-.header { margin-top: 1rem; }
-.grid { display: grid; gap: 1.5rem; grid-template-columns: 260px 1fr; }
-.sidebar { position: sticky; top: 1rem; height: fit-content; }
-.sidebar .nav-list { list-style: none; padding-left: 0; }
-.sidebar .nav-list li { margin: .25rem 0; }
-.sidebar input[type="search"] { width: 100%; }
-.content { min-height: 60vh; }
-.cards .card { display: block; border: 1px solid var(--muted-border-color); padding: 1rem; border-radius: .75rem; transition: transform .15s ease, box-shadow .15s ease; }
-.cards .card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.06); }
-.mermaid { background: var(--card-background-color); border-radius: .5rem; padding: .75rem; }
-.badge { background: var(--accent); color: #fff; border-radius: 999px; padding: .1rem .6rem; font-size: .8rem; }
-.kv { display:grid; grid-template-columns: 220px 1fr; gap:.25rem .75rem; }
-.kv dt { color: var(--muted-color); }
-kbd { background: #1112; padding:.15rem .4rem; border-radius:.3rem; }
-.logo { width: 22px; height: 22px; border-radius: 6px; vertical-align: middle; margin-right: .4rem; }
-
-nav .dropdown { position: relative; }
-nav .dropdown .submenu { display: none; position: absolute; right: 0; background: var(--card-background-color); padding: .5rem; border-radius: .5rem; box-shadow: 0 10px 30px rgba(0,0,0,.1); z-index: 10; }
-nav .dropdown:hover .submenu { display: block; }
-
-#themeToggle { border: none; background: transparent; font-size: 1.1rem; cursor: pointer; }
-
-.fade-in { animation: fadeIn .22s ease-out; }
-@keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
-
-@media (max-width: 980px) {
-  .grid { grid-template-columns: 1fr; }
-  .sidebar { position: relative; }
-}
+.header { margin-top:1rem; }
+.grid { display:grid; gap:1.5rem; grid-template-columns:260px 1fr; }
+.sidebar { position:sticky; top:1rem; height:fit-content; }
+.sidebar .nav-list { list-style:none; padding-left:0; }
+.sidebar .nav-list li { margin:.25rem 0; }
+.sidebar input[type="search"]{ width:100%; }
+.logo{ width:22px; height:22px; border-radius:6px; margin-right:.4rem; vertical-align:middle; }
+.fade-in{ animation:fade .22s ease-out; } @keyframes fade{ from{opacity:0} to{opacity:1} }
+.mermaid{ background:var(--card-background-color); border-radius:.5rem; padding:.75rem; }
+table{ font-size:.95rem; }
+@media (max-width:980px){ .grid{ grid-template-columns:1fr; } .sidebar{ position:relative; } }
