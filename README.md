@@ -126,10 +126,15 @@ O projeto foi construído com base **modular e escalável**, permitindo evoluç�
 
 - **Visual Studio Code** — Desenvolvimento e testes
 - **Postman / Thunder Client** — Testes de APIs
-- **Draw.io / Figma** — Modelagem visual
+- **dbdiagram.io / Figma** — Modelagem visual
 - **Azure Data Studio** — Visualização e análise do banco de dados
 - **Docker Compose** — Empacotamento e deploy local do n8n e Postgres
 
+---
+
+## 🗃️ Arquitetura do DataBase
+
+- https://dbdiagram.io/d/SDR_VIRTUAL-691528c26735e111708c65ec
 
 ---
 
