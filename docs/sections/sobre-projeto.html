@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="pt-br" data-theme="auto">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sobre o Projeto · SDR Virtual</title>
+  <link rel="icon" href="../favicon.ico">
+  <link rel="apple-touch-icon" href="../assets/img/favicon.png">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.min.css">
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>if(!window.mermaid){var s=document.createElement('script');s.src='../assets/js/mermaid.min.js';document.head.appendChild(s);}</script>
+  <script defer src="../assets/js/app.js"></script>
+</head>
+<body class="fade-in">
+<header class="container header">
+  <nav>
+    <ul>
+      <li><img src="../assets/img/favicon.png" class="logo" alt="SDR"/><strong>SDR Virtual</strong></li>
+    </ul>
+    <ul>
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../sections/sobre-projeto.html">Sobre o Projeto</a></li>
+      <li class="dropdown">
+        <a href="#" role="button">Cenários ▾</a>
+        <ul class="submenu">
+          <li><a href="../scenarios/recebe-mensagens.html">Recebe Mensagens</a></li>
+          <li><a href="../scenarios/processamento-resposta.html">Processamento de Resposta</a></li>
+          <li><a href="../scenarios/envio-resposta.html">Envio de Resposta</a></li>
+          <li><a href="../scenarios/envio-fotos.html">Envio de Fotos</a></li>
+          <li><a href="../scenarios/envio-arquivos.html">Envio de Arquivos</a></li>
+          <li><a href="../scenarios/executor-de-filas.html">Executor de Filas</a></li>
+          <li><a href="../scenarios/monitor-de-logs.html">Monitor de Logs</a></li>
+          <li><a href="../scenarios/scheduler-cadencias.html">Scheduler de Cadências</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" role="button">Arquitetura ▾</a>
+        <ul class="submenu">
+          <li><a href="../sections/der-estrutura-banco.html">DER e Estrutura do Banco</a></li>
+          <li><a href="../sections/config-postgresql.html">Configuração do PostgreSQL</a></li>
+          <li><a href="../sections/config-vps.html">Configuração da VPS</a></li>
+          <li><a href="../sections/ambiente-n8n.html">Ambiente N8N</a></li>
+          <li><a href="../sections/ambiente-maritaca.html">Ambiente Maritaca</a></li>
+          <li><a href="../sections/ambiente-evolution.html">Ambiente Evolution API</a></li>
+          <li><a href="../sections/backup-retencao.html">Backup e Retenção de Dados</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" role="button">Operação ▾</a>
+        <ul class="submenu">
+          <li><a href="../sections/deploy-atualizacoes.html">Deploy e Atualizações</a></li>
+          <li><a href="../sections/versionamento-filas.html">Versionamento e Filas</a></li>
+          <li><a href="../sections/seguranca-tokens.html">Segurança e Tokens</a></li>
+          <li><a href="../sections/logs-monitoramento.html">Logs e Monitoramento</a></li>
+          <li><a href="../sections/status-metricas.html">Status e Métricas (SaaS)</a></li>
+          <li><a href="../sections/clientes-multitenant.html">Clientes e Multi-Tenant</a></li>
+          <li><a href="../sections/relatorios-insights.html">Relatórios e Insights</a></li>
+        </ul>
+      </li>
+      <li><button id="themeToggle" aria-label="Alternar tema">🌗</button></li>
+    </ul>
+  </nav>
+</header>
+<main class="container grid">
+  <aside class="sidebar">
+    <input type="search" id="search" placeholder="Pesquisar..." aria-label="Pesquisar documentação" />
+    <h6 class="muted">Visão Geral</h6>
+    <ul class="nav-list">
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../sections/sobre-projeto.html">Sobre o Projeto</a></li>
+    </ul>
+    <h6 class="muted">Cenários</h6>
+    <ul class="nav-list">
+      <li><a href="../scenarios/recebe-mensagens.html">Recebe Mensagens</a></li>
+      <li><a href="../scenarios/processamento-resposta.html">Processamento de Resposta</a></li>
+      <li><a href="../scenarios/envio-resposta.html">Envio de Resposta</a></li>
+      <li><a href="../scenarios/envio-fotos.html">Envio de Fotos</a></li>
+      <li><a href="../scenarios/envio-arquivos.html">Envio de Arquivos</a></li>
+      <li><a href="../scenarios/executor-de-filas.html">Executor de Filas</a></li>
+      <li><a href="../scenarios/monitor-de-logs.html">Monitor de Logs</a></li>
+      <li><a href="../scenarios/scheduler-cadencias.html">Scheduler de Cadências</a></li>
+    </ul>
+    <h6 class="muted">Arquitetura & Banco</h6>
+    <ul class="nav-list">
+      <li><a href="../sections/der-estrutura-banco.html">DER e Estrutura do Banco</a></li>
+      <li><a href="../sections/config-postgresql.html">Configuração do PostgreSQL</a></li>
+    </ul>
+    <h6 class="muted">Configurações Técnicas</h6>
+    <ul class="nav-list">
+      <li><a href="../sections/config-vps.html">Configuração da VPS</a></li>
+      <li><a href="../sections/ambiente-n8n.html">Ambiente N8N</a></li>
+      <li><a href="../sections/ambiente-maritaca.html">Ambiente Maritaca</a></li>
+      <li><a href="../sections/ambiente-evolution.html">Ambiente Evolution API</a></li>
+      <li><a href="../sections/backup-retencao.html">Backup e Retenção</a></li>
+    </ul>
+    <h6 class="muted">Operação & DevOps</h6>
+    <ul class="nav-list">
+      <li><a href="../sections/deploy-atualizacoes.html">Deploy e Atualizações</a></li>
+      <li><a href="../sections/versionamento-filas.html">Versionamento e Filas</a></li>
+      <li><a href="../sections/seguranca-tokens.html">Segurança e Tokens</a></li>
+      <li><a href="../sections/logs-monitoramento.html">Logs e Monitoramento</a></li>
+      <li><a href="../sections/status-metricas.html">Status e Métricas (SaaS)</a></li>
+      <li><a href="../sections/clientes-multitenant.html">Clientes e Multi-Tenant</a></li>
+      <li><a href="../sections/relatorios-insights.html">Relatórios e Insights</a></li>
+    </ul>
+  </aside>
+  <section class="content">
+
+<hgroup>
+  <h1>Sobre o Projeto</h1>
+  <p class="muted">Resumo executivo com base na Proposta SDR Virtual: objetivo, arquitetura e escolhas técnicas.</p>
+</hgroup>
+
+<article>
+  <h2>Objetivo</h2>
+  <p>Automatizar o atendimento comercial via WhatsApp com uma SDR Virtual, capaz de receber, classificar e responder mensagens com contexto (IA Maritaca), orquestrada por cenários n8n e sustentada por um banco relacional (PostgreSQL) com auditoria.</p>
+</article>
+
+<article>
+  <h2>Motivação</h2>
+  <ul>
+    <li>Reduzir tempo de resposta e aumentar taxa de conversão.</li>
+    <li>Escalar atendimento mantendo qualidade e tom de voz.</li>
+    <li>Governança: histórico, auditoria e confiabilidade operacional.</li>
+  </ul>
+</article>
+
+<article>
+  <h2>Arquitetura Modular</h2>
+  <ul>
+    <li><strong>Recebe Mensagens</strong> → trata, valida e armazena.</li>
+    <li><strong>Processamento de Resposta</strong> → IA, contexto e decisão.</li>
+    <li><strong>Envio de Resposta</strong> → aplica anti-bloqueio (janela, jitter, pacing).</li>
+    <li><strong>Envio de Fotos / Envio de Arquivos</strong> → canais dedicados.</li>
+    <li><strong>Executor de Filas</strong> → reprocesso e confiabilidade.</li>
+    <li><strong>Monitor de Logs</strong> → auditoria e alertas.</li>
+    <li><strong>Scheduler de Cadências</strong> → follow-ups com wait-until.</li>
+  </ul>
+</article>
+
+<article>
+  <h2>Tecnologias e Por quê</h2>
+  <table>
+    <thead><tr><th>Tecnologia</th><th>Papel</th><th>Justificativa</th></tr></thead>
+    <tbody>
+      <tr><td><strong>n8n</strong></td><td>Orquestração</td><td>Open-source, integrações rápidas, excelente para microcenários e versionamento de workflows.</td></tr>
+      <tr><td><strong>PostgreSQL</strong></td><td>Banco + Auditoria</td><td>ACID, triggers, JSONB; ideal para histórico e governança de dados.</td></tr>
+      <tr><td><strong>Evolution API</strong></td><td>WhatsApp</td><td>Integração prática com sessões e mensagens, multi-conta, simples de operar via API.</td></tr>
+      <tr><td><strong>Maritaca</strong></td><td>IA</td><td>Modelo ajustável ao tom de voz e contexto, boa latência e custo no cenário Brasil.</td></tr>
+      <tr><td><strong>VPS Ubuntu + Docker</strong></td><td>Infra</td><td>Padronização, isolamento e portabilidade, com baixo custo operacional.</td></tr>
+    </tbody>
+  </table>
+</article>
+
+<article>
+  <h2>Visão Evolutiva (SaaS)</h2>
+  <ul>
+    <li>Painel de status e métricas por cliente (multi-tenant).</li>
+    <li>Cadências inteligentes e anti-bloqueio adaptativo.</li>
+    <li>Relatórios de produtividade e conversão.</li>
+  </ul>
+</article>
+
+  </section>
+</main>
+<footer class="container">
+  <small>© 2025 SDR Virtual — Documentação Técnica.</small>
+</footer>
+</body>
+</html>

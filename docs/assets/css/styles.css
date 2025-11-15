@@ -1,0 +1,17 @@
+
+:root { --accent:#27ae60; --menu-surface:rgba(255,255,255,.85); }
+html[data-theme="dark"] { color-scheme: dark; --menu-surface:rgba(12,12,18,.9); }
+.header { margin-top:1rem; }
+.grid { display:grid; gap:1.5rem; grid-template-columns:280px 1fr; }
+.sidebar { position:sticky; top:1rem; height:calc(100vh - 3rem); overflow:auto; padding-right:.5rem; }
+.sidebar .nav-list { list-style:none; padding-left:0; }
+.sidebar .nav-list li { margin:.2rem 0; }
+.sidebar input[type="search"]{ width:100%; }
+.logo{ width:22px; height:22px; border-radius:6px; margin-right:.4rem; vertical-align:middle; }
+nav .dropdown{ position:relative; }
+nav .dropdown .submenu{ display:none; position:absolute; right:0; background:var(--menu-surface); padding:.5rem; border-radius:.5rem; box-shadow:0 10px 30px rgba(0,0,0,.25); z-index:10; backdrop-filter:blur(8px); }
+nav .dropdown:hover .submenu{ display:block; }
+.fade-in{ animation:fade .22s ease-out; } @keyframes fade{ from{opacity:0} to{opacity:1} }
+.mermaid{ background:var(--card-background-color); border-radius:.5rem; padding:.75rem; }
+table{ font-size:.95rem; }
+@media (max-width:980px){ .grid{ grid-template-columns:1fr; } .sidebar{ position:relative; height:auto; } }

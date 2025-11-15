@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pt-br" data-theme="auto">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Configuração da VPS · SDR Virtual</title>
+  <link rel="icon" href="../favicon.ico">
+  <link rel="apple-touch-icon" href="../assets/img/favicon.png">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.min.css">
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>if(!window.mermaid){var s=document.createElement('script');s.src='../assets/js/mermaid.min.js';document.head.appendChild(s);}</script>
+  <script defer src="../assets/js/app.js"></script>
+</head>
+<body class="fade-in">
+<header class="container header">
+  <nav>
+    <ul>
+      <li><img src="../assets/img/favicon.png" class="logo" alt="SDR"/><strong>SDR Virtual</strong></li>
+    </ul>
+    <ul>
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../sections/sobre-projeto.html">Sobre o Projeto</a></li>
+      <li class="dropdown">
+        <a href="#" role="button">Cenários ▾</a>
+        <ul class="submenu">
+          <li><a href="../scenarios/recebe-mensagens.html">Recebe Mensagens</a></li>
+          <li><a href="../scenarios/processamento-resposta.html">Processamento de Resposta</a></li>
+          <li><a href="../scenarios/envio-resposta.html">Envio de Resposta</a></li>
+          <li><a href="../scenarios/envio-fotos.html">Envio de Fotos</a></li>
+          <li><a href="../scenarios/envio-arquivos.html">Envio de Arquivos</a></li>
+          <li><a href="../scenarios/executor-de-filas.html">Executor de Filas</a></li>
+          <li><a href="../scenarios/monitor-de-logs.html">Monitor de Logs</a></li>
+          <li><a href="../scenarios/scheduler-cadencias.html">Scheduler de Cadências</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" role="button">Arquitetura ▾</a>
+        <ul class="submenu">
+          <li><a href="../sections/der-estrutura-banco.html">DER e Estrutura do Banco</a></li>
+          <li><a href="../sections/config-postgresql.html">Configuração do PostgreSQL</a></li>
+          <li><a href="../sections/config-vps.html">Configuração da VPS</a></li>
+          <li><a href="../sections/ambiente-n8n.html">Ambiente N8N</a></li>
+          <li><a href="../sections/ambiente-maritaca.html">Ambiente Maritaca</a></li>
+          <li><a href="../sections/ambiente-evolution.html">Ambiente Evolution API</a></li>
+          <li><a href="../sections/backup-retencao.html">Backup e Retenção de Dados</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" role="button">Operação ▾</a>
+        <ul class="submenu">
+          <li><a href="../sections/deploy-atualizacoes.html">Deploy e Atualizações</a></li>
+          <li><a href="../sections/versionamento-filas.html">Versionamento e Filas</a></li>
+          <li><a href="../sections/seguranca-tokens.html">Segurança e Tokens</a></li>
+          <li><a href="../sections/logs-monitoramento.html">Logs e Monitoramento</a></li>
+          <li><a href="../sections/status-metricas.html">Status e Métricas (SaaS)</a></li>
+          <li><a href="../sections/clientes-multitenant.html">Clientes e Multi-Tenant</a></li>
+          <li><a href="../sections/relatorios-insights.html">Relatórios e Insights</a></li>
+        </ul>
+      </li>
+      <li><button id="themeToggle" aria-label="Alternar tema">🌗</button></li>
+    </ul>
+  </nav>
+</header>
+<main class="container grid">
+  <aside class="sidebar">
+    <input type="search" id="search" placeholder="Pesquisar..." aria-label="Pesquisar documentação" />
+    <h6 class="muted">Visão Geral</h6>
+    <ul class="nav-list">
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../sections/sobre-projeto.html">Sobre o Projeto</a></li>
+    </ul>
+    <h6 class="muted">Cenários</h6>
+    <ul class="nav-list">
+      <li><a href="../scenarios/recebe-mensagens.html">Recebe Mensagens</a></li>
+      <li><a href="../scenarios/processamento-resposta.html">Processamento de Resposta</a></li>
+      <li><a href="../scenarios/envio-resposta.html">Envio de Resposta</a></li>
+      <li><a href="../scenarios/envio-fotos.html">Envio de Fotos</a></li>
+      <li><a href="../scenarios/envio-arquivos.html">Envio de Arquivos</a></li>
+      <li><a href="../scenarios/executor-de-filas.html">Executor de Filas</a></li>
+      <li><a href="../scenarios/monitor-de-logs.html">Monitor de Logs</a></li>
+      <li><a href="../scenarios/scheduler-cadencias.html">Scheduler de Cadências</a></li>
+    </ul>
+    <h6 class="muted">Arquitetura & Banco</h6>
+    <ul class="nav-list">
+      <li><a href="../sections/der-estrutura-banco.html">DER e Estrutura do Banco</a></li>
+      <li><a href="../sections/config-postgresql.html">Configuração do PostgreSQL</a></li>
+    </ul>
+    <h6 class="muted">Configurações Técnicas</h6>
+    <ul class="nav-list">
+      <li><a href="../sections/config-vps.html">Configuração da VPS</a></li>
+      <li><a href="../sections/ambiente-n8n.html">Ambiente N8N</a></li>
+      <li><a href="../sections/ambiente-maritaca.html">Ambiente Maritaca</a></li>
+      <li><a href="../sections/ambiente-evolution.html">Ambiente Evolution API</a></li>
+      <li><a href="../sections/backup-retencao.html">Backup e Retenção</a></li>
+    </ul>
+    <h6 class="muted">Operação & DevOps</h6>
+    <ul class="nav-list">
+      <li><a href="../sections/deploy-atualizacoes.html">Deploy e Atualizações</a></li>
+      <li><a href="../sections/versionamento-filas.html">Versionamento e Filas</a></li>
+      <li><a href="../sections/seguranca-tokens.html">Segurança e Tokens</a></li>
+      <li><a href="../sections/logs-monitoramento.html">Logs e Monitoramento</a></li>
+      <li><a href="../sections/status-metricas.html">Status e Métricas (SaaS)</a></li>
+      <li><a href="../sections/clientes-multitenant.html">Clientes e Multi-Tenant</a></li>
+      <li><a href="../sections/relatorios-insights.html">Relatórios e Insights</a></li>
+    </ul>
+  </aside>
+  <section class="content">
+
+<hgroup><h1>Configuração da VPS</h1><p class="muted">Setup Ubuntu, Docker, estrutura, .env, firewall e fail2ban.</p></hgroup>
+<article><h2>Atualizações e pacotes</h2><pre><code>sudo apt update && sudo apt upgrade -y
+sudo apt install git curl unzip ufw fail2ban -y</code></pre></article>
+<article><h2>Docker e Compose</h2><pre><code>curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+sudo apt install docker-compose -y</code></pre></article>
+<article><h2>Diretórios</h2><pre><code>sudo mkdir -p /opt/sdr/{data,backups,logs}
+sudo chown -R $USER:$USER /opt/sdr</code></pre></article>
+<article><h2>.env</h2><pre><code>POSTGRES_USER=sdr_user
+POSTGRES_PASSWORD=sdr_password
+POSTGRES_DB=sdr_virtual
+EVOLUTION_API_KEY=chave_evolution_aqui
+MARITACA_API_KEY=chave_maritaca_aqui</code></pre></article>
+<article><h2>Firewall & Fail2Ban</h2><pre><code>sudo ufw allow OpenSSH
+sudo ufw allow 5678/tcp  # n8n
+sudo ufw allow 5432/tcp  # PostgreSQL
+sudo ufw enable
+sudo systemctl enable fail2ban --now</code></pre></article>
+
+  </section>
+</main>
+<footer class="container">
+  <small>© 2025 SDR Virtual — Documentação Técnica.</small>
+</footer>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="pt-br" data-theme="auto">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DER e Estrutura do Banco · SDR Virtual</title>
+  <link rel="icon" href="../favicon.ico">
+  <link rel="apple-touch-icon" href="../assets/img/favicon.png">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.min.css">
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>if(!window.mermaid){var s=document.createElement('script');s.src='../assets/js/mermaid.min.js';document.head.appendChild(s);}</script>
+  <script defer src="../assets/js/app.js"></script>
+</head>
+<body class="fade-in">
+<header class="container header">
+  <nav>
+    <ul>
+      <li><img src="../assets/img/favicon.png" class="logo" alt="SDR"/><strong>SDR Virtual</strong></li>
+    </ul>
+    <ul>
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../sections/sobre-projeto.html">Sobre o Projeto</a></li>
+      <li class="dropdown">
+        <a href="#" role="button">Cenários ▾</a>
+        <ul class="submenu">
+          <li><a href="../scenarios/recebe-mensagens.html">Recebe Mensagens</a></li>
+          <li><a href="../scenarios/processamento-resposta.html">Processamento de Resposta</a></li>
+          <li><a href="../scenarios/envio-resposta.html">Envio de Resposta</a></li>
+          <li><a href="../scenarios/envio-fotos.html">Envio de Fotos</a></li>
+          <li><a href="../scenarios/envio-arquivos.html">Envio de Arquivos</a></li>
+          <li><a href="../scenarios/executor-de-filas.html">Executor de Filas</a></li>
+          <li><a href="../scenarios/monitor-de-logs.html">Monitor de Logs</a></li>
+          <li><a href="../scenarios/scheduler-cadencias.html">Scheduler de Cadências</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" role="button">Arquitetura ▾</a>
+        <ul class="submenu">
+          <li><a href="../sections/der-estrutura-banco.html">DER e Estrutura do Banco</a></li>
+          <li><a href="../sections/config-postgresql.html">Configuração do PostgreSQL</a></li>
+          <li><a href="../sections/config-vps.html">Configuração da VPS</a></li>
+          <li><a href="../sections/ambiente-n8n.html">Ambiente N8N</a></li>
+          <li><a href="../sections/ambiente-maritaca.html">Ambiente Maritaca</a></li>
+          <li><a href="../sections/ambiente-evolution.html">Ambiente Evolution API</a></li>
+          <li><a href="../sections/backup-retencao.html">Backup e Retenção de Dados</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" role="button">Operação ▾</a>
+        <ul class="submenu">
+          <li><a href="../sections/deploy-atualizacoes.html">Deploy e Atualizações</a></li>
+          <li><a href="../sections/versionamento-filas.html">Versionamento e Filas</a></li>
+          <li><a href="../sections/seguranca-tokens.html">Segurança e Tokens</a></li>
+          <li><a href="../sections/logs-monitoramento.html">Logs e Monitoramento</a></li>
+          <li><a href="../sections/status-metricas.html">Status e Métricas (SaaS)</a></li>
+          <li><a href="../sections/clientes-multitenant.html">Clientes e Multi-Tenant</a></li>
+          <li><a href="../sections/relatorios-insights.html">Relatórios e Insights</a></li>
+        </ul>
+      </li>
+      <li><button id="themeToggle" aria-label="Alternar tema">🌗</button></li>
+    </ul>
+  </nav>
+</header>
+<main class="container grid">
+  <aside class="sidebar">
+    <input type="search" id="search" placeholder="Pesquisar..." aria-label="Pesquisar documentação" />
+    <h6 class="muted">Visão Geral</h6>
+    <ul class="nav-list">
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../sections/sobre-projeto.html">Sobre o Projeto</a></li>
+    </ul>
+    <h6 class="muted">Cenários</h6>
+    <ul class="nav-list">
+      <li><a href="../scenarios/recebe-mensagens.html">Recebe Mensagens</a></li>
+      <li><a href="../scenarios/processamento-resposta.html">Processamento de Resposta</a></li>
+      <li><a href="../scenarios/envio-resposta.html">Envio de Resposta</a></li>
+      <li><a href="../scenarios/envio-fotos.html">Envio de Fotos</a></li>
+      <li><a href="../scenarios/envio-arquivos.html">Envio de Arquivos</a></li>
+      <li><a href="../scenarios/executor-de-filas.html">Executor de Filas</a></li>
+      <li><a href="../scenarios/monitor-de-logs.html">Monitor de Logs</a></li>
+      <li><a href="../scenarios/scheduler-cadencias.html">Scheduler de Cadências</a></li>
+    </ul>
+    <h6 class="muted">Arquitetura & Banco</h6>
+    <ul class="nav-list">
+      <li><a href="../sections/der-estrutura-banco.html">DER e Estrutura do Banco</a></li>
+      <li><a href="../sections/config-postgresql.html">Configuração do PostgreSQL</a></li>
+    </ul>
+    <h6 class="muted">Configurações Técnicas</h6>
+    <ul class="nav-list">
+      <li><a href="../sections/config-vps.html">Configuração da VPS</a></li>
+      <li><a href="../sections/ambiente-n8n.html">Ambiente N8N</a></li>
+      <li><a href="../sections/ambiente-maritaca.html">Ambiente Maritaca</a></li>
+      <li><a href="../sections/ambiente-evolution.html">Ambiente Evolution API</a></li>
+      <li><a href="../sections/backup-retencao.html">Backup e Retenção</a></li>
+    </ul>
+    <h6 class="muted">Operação & DevOps</h6>
+    <ul class="nav-list">
+      <li><a href="../sections/deploy-atualizacoes.html">Deploy e Atualizações</a></li>
+      <li><a href="../sections/versionamento-filas.html">Versionamento e Filas</a></li>
+      <li><a href="../sections/seguranca-tokens.html">Segurança e Tokens</a></li>
+      <li><a href="../sections/logs-monitoramento.html">Logs e Monitoramento</a></li>
+      <li><a href="../sections/status-metricas.html">Status e Métricas (SaaS)</a></li>
+      <li><a href="../sections/clientes-multitenant.html">Clientes e Multi-Tenant</a></li>
+      <li><a href="../sections/relatorios-insights.html">Relatórios e Insights</a></li>
+    </ul>
+  </aside>
+<section class="content">
+
+<hgroup>
+  <h1>DER e Estrutura do Banco (PostgreSQL)</h1>
+  <p class="muted">Modelo relacional: tabelas, relações, auditoria e snippets prontos.</p>
+</hgroup>
+<article>
+  <h2>Esquema SQL Oficial</h2>
+  <p>
+    O script completo do banco está disponível em
+    <a href="../DB_SDR_VIRTUAL.sql" download><code>DB_SDR_VIRTUAL.sql</code></a>.
+    Ele consolida as instruções de <code>CREATE TABLE</code> e <code>ALTER TABLE</code>,
+    incluindo chaves estrangeiras, auditorias e entidades auxiliares.
+  </p>
+  <ul>
+    <li><strong>Importação rápida:</strong> <code>psql -f docs/DB_SDR_VIRTUAL.sql</code> (ajuste conforme o dialeto do seu SGBD).</li>
+    <li><strong>Compatibilidade:</strong> script pensado para provisionamento inicial em ambientes de homologação e produção.</li>
+    <li><strong>Versionamento:</strong> mantenha o arquivo junto da documentação para que qualquer atualização do DER seja rastreável.</li>
+  </ul>
+  <p><a class="contrast button" href="../DB_SDR_VIRTUAL.sql" download>Baixar schema SQL</a></p>
+</article>
+<article>
+  <h2>DER Visual</h2>
+  <div class="mermaid">
+    flowchart TB
+        cliente --> contrato
+        cliente --> cliente_configuracao
+        cliente --> sdr_cliente_config
+        cliente --> sdr_contexto_cliente
+        cliente --> sdr_leads
+        cliente --> sdr_produtos
+        cliente --> follow_up
+        cliente --> blocked_list
+        cliente --> whatsapp_account_update
+        cliente --> usuario
+        cliente --> Agente
+        produto --> plano
+        produto --> contrato
+        plano --> contrato
+        Agente --> produto
+        Agente --> canal
+        crm --> sdr_cliente_config
+        crm --> sdr_leads
+        canal --> sdr_leads
+        sdr_situacao_interna --> sdr_leads
+        sdr_produtos --> sdr_imagem_produto
+        sdr_produtos --> sdr_leads
+        sdr_leads --> sdr_leads_historico
+        sdr_leads --> sdr_mensagens
+        tipo_mensagem --> sdr_mensagens
+        sdr_cliente_config --> sdr_cliente_config_historico
+        sdr_contexto_cliente --> sdr_contexto_cliente_historico
+  </div>
+</article>
+<article>
+  <h2>Tabelas Principais</h2>
+  <table>
+    <thead><tr><th>Entidade</th><th>Descrição</th><th>Relacionamentos</th></tr></thead>
+    <tbody>
+      <tr><td>cliente</td><td>Cadastro central de cada empresa/tenant.</td><td>Base para contrato, configurações, leads e usuários.</td></tr>
+      <tr><td>produto / plano / contrato</td><td>Define ofertas, planos e contratos ativos.</td><td><code>contrato</code> referencia <code>cliente</code>, <code>plano</code> e <code>produto</code>.</td></tr>
+      <tr><td>sdr_cliente_config</td><td>Guarda tokens, contas WhatsApp e integrações.</td><td>FKs para <code>cliente</code> e <code>crm</code>; histórico em <code>sdr_cliente_config_historico</code>.</td></tr>
+      <tr><td>sdr_leads</td><td>Representa o pipeline de prospecção.</td><td>Depende de <code>cliente</code>, <code>canal</code>, <code>sdr_situacao_interna</code>, <code>crm</code> e <code>sdr_produtos</code>.</td></tr>
+      <tr><td>sdr_mensagens</td><td>Mensagens enviadas/recebidas.</td><td>Relaciona-se a um <code>lead</code> e ao <code>tipo_mensagem</code>; rastreia cliente e WhatsApp.</td></tr>
+      <tr><td>sdr_produtos &amp; sdr_imagem_produto</td><td>Material comercial personalizado por cliente.</td><td><code>sdr_imagem_produto</code> referencia um produto e serve de base para recomendações.</td></tr>
+      <tr><td>blocked_list / follow_up / whatsapp_account_update / usuario</td><td>Entidades de suporte à operação e segurança.</td><td>Sempre rastreadas ao <code>cliente</code> responsável.</td></tr>
+    </tbody>
+  </table>
+</article>
+<article>
+  <h2>Auditoria Automática (Histórico)</h2>
+  <table>
+    <thead><tr><th>Tabela</th><th>Histórico</th><th>Motivo</th></tr></thead>
+    <tbody>
+      <tr><td>sdr_contexto_cliente</td><td>sdr_contexto_cliente_historico</td><td>Contextos da IA</td></tr>
+      <tr><td>sdr_leads</td><td>sdr_leads_historico</td><td>Status/dados</td></tr>
+      <tr><td>sdr_cliente_config</td><td>sdr_cliente_config_historico</td><td>Flags/limites</td></tr>
+    </tbody>
+  </table>
+</article>
+<article>
+  <h2>Snippets SQL</h2>
+  <details><summary><strong>Trigger: data_hora_ultima_alteracao</strong></summary>
+  <pre><code>CREATE OR REPLACE FUNCTION atualizar_data_modificacao()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.data_hora_ultima_alteracao = NOW();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Exemplo:
+CREATE TRIGGER trg_update_cliente BEFORE UPDATE ON cliente
+FOR EACH ROW EXECUTE FUNCTION atualizar_data_modificacao();</code></pre>
+  </details>
+
+  <details><summary><strong>Auditoria: sdr_contexto_cliente</strong></summary>
+  <pre><code>CREATE TABLE IF NOT EXISTS sdr_contexto_cliente_historico (
+  id SERIAL PRIMARY KEY,
+  id_contexto INT REFERENCES sdr_contexto_cliente(id),
+  campo_alterado TEXT NOT NULL,
+  valor_anterior TEXT,
+  valor_novo TEXT,
+  alterado_por TEXT,
+  host TEXT,
+  aplicacao TEXT,
+  data_hora_cadastro TIMESTAMP DEFAULT NOW() NOT NULL
+);
+
+CREATE OR REPLACE FUNCTION auditar_sdr_contexto()
+RETURNS TRIGGER AS $$
+DECLARE
+  campo TEXT;
+  antigo TEXT;
+  novo TEXT;
+BEGIN
+  FOR campo IN SELECT column_name FROM information_schema.columns
+               WHERE table_name = 'sdr_contexto_cliente'
+  LOOP
+    EXECUTE format('SELECT ($1).' || campo || '::text', OLD) INTO antigo;
+    EXECUTE format('SELECT ($1).' || campo || '::text', NEW) INTO novo;
+    IF antigo IS DISTINCT FROM novo THEN
+      INSERT INTO sdr_contexto_cliente_historico
+        (id_contexto, campo_alterado, valor_anterior, valor_novo, alterado_por, host, aplicacao)
+      VALUES (OLD.id, campo, antigo, novo, current_user, inet_client_addr(), 'API / N8N');
+    END IF;
+  END LOOP;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_audit_contexto
+AFTER UPDATE ON sdr_contexto_cliente
+FOR EACH ROW EXECUTE FUNCTION auditar_sdr_contexto();</code></pre>
+  </details>
+</article>
+
+  </section>
+</main>
+<footer class="container">
+  <small>© 2025 SDR Virtual — Documentação Técnica.</small>
+</footer>
+</body>
+</html>
