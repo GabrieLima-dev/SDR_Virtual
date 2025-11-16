@@ -132,14 +132,36 @@ O projeto foi construído com base **modular e escalável**, permitindo evoluç�
 
 ---
 
-## 🗃️ Arquitetura do DataBase
+## 🗃️ Arquitetura do Banco de Dados
 
-- https://dbdiagram.io/d/SDR_VIRTUAL-691528c26735e111708c65ec
+O banco PostgreSQL organiza o MVP em domínios que garantem rastreabilidade desde o cadastro do cliente até a entrega da mensagem. O diagrama abaixo resume os relacionamentos centrais.
+
+```
+              cliente
+        ┌────────┼────────┬─────────────────────┐
+     contrato   agente   cliente_configuração   sdr_contexto_cliente
+        │          │              │                         │
+   plano/produto   │     sdr_cliente_config           sdr_produtos
+        │          │              │                         │
+    sdr_produtos ──┼──────────────┴──────────┐        sdr_imagem_produto
+        │          │                         │
+     sdr_leads  follow_up              sdr_mensagens
+        │          │                         │
+ sdr_leads_historico  blocked_list   whatsapp_account_update
+```
+
+- **Clientes e Contratos** — `cliente` centraliza os dados comerciais e se relaciona com `produto`, `plano`, `contrato` e `Agente`, permitindo controlar ofertas, canais e períodos contratados.
+- **Configurações e Integrações** — `cliente_configuracao` e `sdr_cliente_config` armazenam chaves do n8n, WhatsApp e Maritaca, enquanto `sdr_cliente_config_historico` registra alterações; `crm`, `canal` e `sdr_situacao_interna` conectam o fluxo com sistemas externos.
+- **Contexto e Conteúdo** — `sdr_contexto_cliente` + histórico guardam o prompt institucional, e `sdr_produtos`/`sdr_imagem_produto` definem catálogos e mídias que a IA pode utilizar durante o atendimento.
+- **Leads e Cadência** — `sdr_leads`, `sdr_leads_historico`, `follow_up` e `blocked_list` controlam entrada de oportunidades, evolução no funil e regras de tentativa/pausa.
+- **Mensageria e Auditoria** — `tipo_mensagem`, `sdr_mensagens`, `whatsapp_account_update` e `usuario` mantêm cada interação registrada com papéis, eventos críticos da API e acessos humanos.
+
+📄 **DDL completa:** `docs/DB_SDR_VIRTUAL.sql`  
+🗂️ **Diagrama visual:** https://dbdiagram.io/d/SDR_VIRTUAL-691528c26735e111708c65ec
 
 ---
 
 ## 📜 Licença
 
 Este projeto está licenciado sob a [MIT License](LICENSE).
-
 
