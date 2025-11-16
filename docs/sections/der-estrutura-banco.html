@@ -112,25 +112,67 @@
   <p class="muted">Modelo relacional: tabelas, relações, auditoria e snippets prontos.</p>
 </hgroup>
 <article>
+  <h2>Esquema SQL Oficial</h2>
+  <p>
+    O script completo do banco está disponível em
+    <a href="../DB_SDR_VIRTUAL.sql" download><code>DB_SDR_VIRTUAL.sql</code></a>.
+    Ele consolida as instruções de <code>CREATE TABLE</code> e <code>ALTER TABLE</code>,
+    incluindo chaves estrangeiras, auditorias e entidades auxiliares.
+  </p>
+  <ul>
+    <li><strong>Importação rápida:</strong> <code>psql -f docs/DB_SDR_VIRTUAL.sql</code> (ajuste conforme o dialeto do seu SGBD).</li>
+    <li><strong>Compatibilidade:</strong> script pensado para provisionamento inicial em ambientes de homologação e produção.</li>
+    <li><strong>Versionamento:</strong> mantenha o arquivo junto da documentação para que qualquer atualização do DER seja rastreável.</li>
+  </ul>
+  <p><a class="contrast button" href="../DB_SDR_VIRTUAL.sql" download>Baixar schema SQL</a></p>
+</article>
+<article>
   <h2>DER Visual</h2>
   <div class="mermaid">
-    flowchart LR
+    flowchart TB
         cliente --> contrato
-        produto --> plano
-        plano --> contrato
         cliente --> cliente_configuracao
         cliente --> sdr_cliente_config
+        cliente --> sdr_contexto_cliente
         cliente --> sdr_leads
-        sdr_situacao_interna --> sdr_leads
+        cliente --> sdr_produtos
+        cliente --> follow_up
+        cliente --> blocked_list
+        cliente --> whatsapp_account_update
+        cliente --> usuario
+        cliente --> Agente
+        produto --> plano
+        produto --> contrato
+        plano --> contrato
+        Agente --> produto
+        Agente --> canal
+        crm --> sdr_cliente_config
+        crm --> sdr_leads
         canal --> sdr_leads
+        sdr_situacao_interna --> sdr_leads
+        sdr_produtos --> sdr_imagem_produto
+        sdr_produtos --> sdr_leads
         sdr_leads --> sdr_leads_historico
         sdr_leads --> sdr_mensagens
         tipo_mensagem --> sdr_mensagens
-        cliente --> sdr_contexto_cliente
-        cliente --> sdr_produtos
-        sdr_produtos --> sdr_imagem_produto
-        cliente --> sdr_bloqueio_atendimento
+        sdr_cliente_config --> sdr_cliente_config_historico
+        sdr_contexto_cliente --> sdr_contexto_cliente_historico
   </div>
+</article>
+<article>
+  <h2>Tabelas Principais</h2>
+  <table>
+    <thead><tr><th>Entidade</th><th>Descrição</th><th>Relacionamentos</th></tr></thead>
+    <tbody>
+      <tr><td>cliente</td><td>Cadastro central de cada empresa/tenant.</td><td>Base para contrato, configurações, leads e usuários.</td></tr>
+      <tr><td>produto / plano / contrato</td><td>Define ofertas, planos e contratos ativos.</td><td><code>contrato</code> referencia <code>cliente</code>, <code>plano</code> e <code>produto</code>.</td></tr>
+      <tr><td>sdr_cliente_config</td><td>Guarda tokens, contas WhatsApp e integrações.</td><td>FKs para <code>cliente</code> e <code>crm</code>; histórico em <code>sdr_cliente_config_historico</code>.</td></tr>
+      <tr><td>sdr_leads</td><td>Representa o pipeline de prospecção.</td><td>Depende de <code>cliente</code>, <code>canal</code>, <code>sdr_situacao_interna</code>, <code>crm</code> e <code>sdr_produtos</code>.</td></tr>
+      <tr><td>sdr_mensagens</td><td>Mensagens enviadas/recebidas.</td><td>Relaciona-se a um <code>lead</code> e ao <code>tipo_mensagem</code>; rastreia cliente e WhatsApp.</td></tr>
+      <tr><td>sdr_produtos &amp; sdr_imagem_produto</td><td>Material comercial personalizado por cliente.</td><td><code>sdr_imagem_produto</code> referencia um produto e serve de base para recomendações.</td></tr>
+      <tr><td>blocked_list / follow_up / whatsapp_account_update / usuario</td><td>Entidades de suporte à operação e segurança.</td><td>Sempre rastreadas ao <code>cliente</code> responsável.</td></tr>
+    </tbody>
+  </table>
 </article>
 <article>
   <h2>Auditoria Automática (Histórico)</h2>
@@ -138,11 +180,8 @@
     <thead><tr><th>Tabela</th><th>Histórico</th><th>Motivo</th></tr></thead>
     <tbody>
       <tr><td>sdr_contexto_cliente</td><td>sdr_contexto_cliente_historico</td><td>Contextos da IA</td></tr>
-      <tr><td>sdr_cliente_config</td><td>sdr_cliente_config_historico</td><td>Flags/limites</td></tr>
-      <tr><td>cliente_configuracao</td><td>cliente_configuracao_historico</td><td>Tokens/integrações</td></tr>
-      <tr><td>sdr_produtos</td><td>sdr_produtos_historico</td><td>Conteúdo</td></tr>
-      <tr><td>sdr_imagem_produto</td><td>sdr_imagem_produto_historico</td><td>URLs/metadados</td></tr>
       <tr><td>sdr_leads</td><td>sdr_leads_historico</td><td>Status/dados</td></tr>
+      <tr><td>sdr_cliente_config</td><td>sdr_cliente_config_historico</td><td>Flags/limites</td></tr>
     </tbody>
   </table>
 </article>
